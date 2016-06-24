@@ -1,0 +1,81 @@
+//
+//  Network_ParentingClass.m
+//  yiMiaoProject
+//
+//  Created by 罗野 on 16/5/12.
+//  Copyright © 2016年 luo. All rights reserved.
+//
+
+#import "Network_ParentingClass.h"
+
+
+@implementation Network_ParentingClass
+
+- (void)getPregancyDeliveryrWithParams:(Input_params *)params isMum:(BOOL)isMum ResponseBlock:(void (^)(LLError *error,NSArray *list))responseBlock {
+    NSDictionary *dic = [NSDictionary dictionaryFromPropertyObject:params];
+    NSString *url;
+    if (isMum == YES) {
+        url = kGET_PREGNANCY_DELIVERY;
+    } else {
+        url = kGET_KID_DELIVERY;
+    }
+    [self get:kGET_PREGNANCY_DELIVERY params:dic additionalHeader:nil response:^(LLError *error, id responseData) {
+        if (!error) {
+            
+            responseBlock(nil,[responseData objectForKey:@"list"]);
+        } else {
+            responseBlock(error,nil);
+        }
+    }];
+}
+
+- (void)getRiskListWithPage:(Input_params *)page ResponseBlock:(void (^)(LLError *error, NSArray *responseData))responseBlock {
+    
+    NSDictionary *params = [NSDictionary dictionaryFromPropertyObject:page];
+    [self get:kGET_HIGHRISHLIST params:params additionalHeader:nil response:^(LLError *error, id responseData) {
+        if (!error) {
+            RiskListModel *data = [[RiskListModel alloc] initWithDictionary:responseData error:nil];
+            responseBlock(nil,data.list);
+        } else {
+            responseBlock(error,nil);
+        }
+    }];
+}
+
+- (void)gethospitalsImagesWithHospitalsId:(NSInteger)Id ResponseBlock:(void (^)(LLError *error, NSArray *responseData))responseBlock {
+    NSString *url = [NSString stringWithFormat:@"%@/%ld",kGET_hospitalsImages,Id];
+    [self get:url params:nil additionalHeader:nil response:^(LLError *error, id responseData) {
+        if (!error) {
+            HospitalImageListModel *data = [[HospitalImageListModel alloc] initWithDictionary:responseData error:nil];
+            responseBlock(nil,data.list);
+        } else {
+            responseBlock(error,nil);
+        }
+    }];
+}
+
+- (void)getHospitalDetailsInfoHospitalId:(NSString *)Id ResponseBlock:(void (^)(LLError *error, ItemGroupModel *info))responseBlock {
+    [self get:kGET_HospitalsInfo params:@{@"hospitalId":Id} additionalHeader:nil response:^(LLError *error, id responseData) {
+        if (!error) {
+            ItemGroupModel *data = [[ItemGroupModel alloc] initWithDictionary:responseData error:nil];
+            responseBlock(nil,data);
+        } else {
+            responseBlock(error,nil);
+        }
+    }];
+}
+
+- (void)getHospitalListInfoWithParams:(Input_params *)params ResponseBlock:(void (^)(LLError *error, NSArray *info))responseBlock {
+    
+    NSDictionary *dic = [NSDictionary dictionaryFromPropertyObject:params];
+    [self get:kGET_HospitalsList params:dic additionalHeader:nil response:^(LLError *error, id responseData) {
+        if (!error) {
+            HospitalListModel *data = [[HospitalListModel alloc] initWithDictionary:responseData error:nil];
+            responseBlock(nil,data.list);
+        } else {
+            responseBlock(error,nil);
+        }
+    }];
+}
+
+@end

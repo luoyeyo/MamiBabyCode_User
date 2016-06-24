@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "733CEB35234DC857AFF6A674180A6F834ADD64CA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "60BB11873AEC1BBF6DE7097E42BCF8548046DDA0" : 0,
+    "733CEB35234DC857AFF6A674180A6F834ADD64CA" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "EE6E1E3A-C0E2-463D-841B-6FB99C408915",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "60BB11873AEC1BBF6DE7097E42BCF8548046DDA0" : "",
+    "733CEB35234DC857AFF6A674180A6F834ADD64CA" : "yiMiaoCode\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "yiMiaoProject",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "yiMiaoProject\/yiMiaoProject.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.oschina.net\/luoyeIsSb\/doctorProject.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "60BB11873AEC1BBF6DE7097E42BCF8548046DDA0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.oschina.net\/luoyeIsSb\/yiMiao.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "733CEB35234DC857AFF6A674180A6F834ADD64CA"
+    }
+  ]
+}

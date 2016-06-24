@@ -1,0 +1,10 @@
+platform :ios, '7.0' 
+pod 'MBProgressHUD'
+pod 'MJRefresh'
+pod 'AFNetworking', "~> 2.0”
+pod 'SDWebImage'
+pod 'JSONModel'
+pod 'Masonry'
+pod 'UMengAnalytics-NO-IDFA'
+pod 'FMDB'
+pod "Qiniu", "~> 7.0"

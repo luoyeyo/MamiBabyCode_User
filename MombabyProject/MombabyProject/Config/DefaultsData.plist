@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>babyAge</key>
+	<array>
+		<string>出生</string>
+		<string>1月龄</string>
+		<string>2月龄</string>
+		<string>3月龄</string>
+		<string>4月龄</string>
+		<string>5月龄</string>
+		<string>6月龄</string>
+		<string>7月龄</string>
+		<string>8月龄</string>
+		<string>9月龄</string>
+		<string>10月龄</string>
+		<string>11月龄</string>
+		<string>1周岁</string>
+		<string>1岁半</string>
+		<string>2周岁</string>
+		<string>3周岁</string>
+		<string>4周岁</string>
+		<string>6周岁</string>
+	</array>
+</dict>
+</plist>
