@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BillboardView : UIView
-
++ (BillboardView *)billboardViewWithImage:(UIImage *)image imageUrl:(NSString *)url clickBlock:(void (^)())clickBlock;
 @end

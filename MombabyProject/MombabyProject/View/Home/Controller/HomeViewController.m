@@ -13,6 +13,7 @@
 #import "MessageViewController.h"
 #import "TimeLineCollectionView.h"
 #import "SelfViewController.h"
+#import "BillboardView.h"
 
 @interface HomeViewController ()<UIScrollViewDelegate,TimeLineDidChangeDelegate> {
     Input_params *_params;
@@ -177,7 +178,9 @@
 }
 
 - (IBAction)backToToday:(UIButton *)sender {
-    [self.timeLine today];
+//    [self.timeLine today];
+    BillboardView *bull = [BillboardView billboardViewWithImage:nil imageUrl:@"http://pic16.nipic.com/20110827/2127531_105629251000_2.jpg" clickBlock:nil];
+    
 }
 
 - (void)showMessagePage {
