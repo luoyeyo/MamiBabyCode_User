@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GuideBottomBar">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEN-nc-eWx">
+                    <rect key="frame" x="20" y="9" width="22" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="NJP-lN-rfZ"/>
+                        <constraint firstAttribute="width" constant="22" id="xWb-xX-PSa"/>
+                    </constraints>
+                    <state key="normal" image="page3_bottom_icon_return"/>
+                    <connections>
+                        <action selector="backToLast:" destination="iN0-l3-epB" eventType="touchUpInside" id="OfB-Cd-dMT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dew-fq-A7R">
+                    <rect key="frame" x="278" y="9" width="22" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="7en-X9-fZv"/>
+                        <constraint firstAttribute="width" constant="22" id="Q3z-rL-FJJ"/>
+                    </constraints>
+                    <state key="normal" image="page3_bottom_icon_share"/>
+                    <connections>
+                        <action selector="shareThisInfo:" destination="iN0-l3-epB" eventType="touchUpInside" id="vuz-oh-o2b"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Akj-Re-Vku">
+                    <rect key="frame" x="112.5" y="9" width="22" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="G4g-E7-dkX"/>
+                        <constraint firstAttribute="width" constant="22" id="WNZ-Sc-dPG"/>
+                    </constraints>
+                    <state key="normal" image="page3_bottom_icon_heart_n"/>
+                    <state key="selected" image="page3_bottom_icon_heart_h"/>
+                    <connections>
+                        <action selector="likeThisArticle:" destination="iN0-l3-epB" eventType="touchUpInside" id="j4B-lm-MwX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRb-5F-bkz">
+                    <rect key="frame" x="205" y="9" width="22" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="MYO-1I-Gnb"/>
+                        <constraint firstAttribute="width" constant="22" id="SqY-e2-AKq"/>
+                    </constraints>
+                    <state key="normal" image="page3_bottom_icon_like_n"/>
+                    <state key="selected" image="page3_bottom_icon_like_h"/>
+                    <connections>
+                        <action selector="support:" destination="iN0-l3-epB" eventType="touchUpInside" id="ZOq-Ai-GHb"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CEA-5u-BKS">
+                    <rect key="frame" x="42" y="9" width="70.5" height="20"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="0QJ-zs-EmL"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wTE-5U-d7E">
+                    <rect key="frame" x="134.5" y="9" width="70.5" height="20"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="XKP-Up-LiB"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWg-7a-5yu">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                    <color key="backgroundColor" red="0.90588235294117647" green="0.89803921568627454" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="zRS-bT-5XY" customClass="OnePixelLineLayout">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="onePixelConstant">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Dew-fq-A7R" secondAttribute="trailing" constant="20" id="0UE-Qz-bLS"/>
+                <constraint firstItem="wTE-5U-d7E" firstAttribute="top" secondItem="CEA-5u-BKS" secondAttribute="top" id="1x1-H4-MJp"/>
+                <constraint firstItem="bWg-7a-5yu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3bX-Ox-cxN"/>
+                <constraint firstItem="CEA-5u-BKS" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="11:50" id="A2j-OV-sFQ"/>
+                <constraint firstItem="CEA-5u-BKS" firstAttribute="top" secondItem="EEN-nc-eWx" secondAttribute="top" id="Aws-N2-ujr"/>
+                <constraint firstItem="bWg-7a-5yu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="GGj-um-K5a"/>
+                <constraint firstItem="EEN-nc-eWx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="GMz-q2-O6s"/>
+                <constraint firstAttribute="trailing" secondItem="bWg-7a-5yu" secondAttribute="trailing" id="Gym-d1-KK3"/>
+                <constraint firstItem="kRb-5F-bkz" firstAttribute="top" secondItem="Akj-Re-Vku" secondAttribute="top" id="MLw-fL-ZAp"/>
+                <constraint firstItem="EEN-nc-eWx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="NNn-Co-X16"/>
+                <constraint firstItem="Akj-Re-Vku" firstAttribute="leading" secondItem="CEA-5u-BKS" secondAttribute="trailing" id="Qy7-vQ-ZDq"/>
+                <constraint firstItem="wTE-5U-d7E" firstAttribute="leading" secondItem="Akj-Re-Vku" secondAttribute="trailing" id="WD9-sm-Aep"/>
+                <constraint firstItem="Akj-Re-Vku" firstAttribute="top" secondItem="EEN-nc-eWx" secondAttribute="top" id="YQD-M1-vV2"/>
+                <constraint firstItem="wTE-5U-d7E" firstAttribute="width" secondItem="CEA-5u-BKS" secondAttribute="width" id="hLg-Ta-eDp"/>
+                <constraint firstItem="kRb-5F-bkz" firstAttribute="leading" secondItem="wTE-5U-d7E" secondAttribute="trailing" id="hcj-1u-rhU"/>
+                <constraint firstItem="CEA-5u-BKS" firstAttribute="leading" secondItem="EEN-nc-eWx" secondAttribute="trailing" id="qbS-sk-i29"/>
+                <constraint firstItem="bWg-7a-5yu" firstAttribute="leading" secondItem="EEN-nc-eWx" secondAttribute="trailing" id="t1l-qn-0W0"/>
+                <constraint firstItem="Dew-fq-A7R" firstAttribute="top" secondItem="kRb-5F-bkz" secondAttribute="top" id="tEp-be-OqN"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="t1l-qn-0W0"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="likeBtn" destination="Akj-Re-Vku" id="x0n-m0-C7k"/>
+                <outlet property="supportBtn" destination="kRb-5F-bkz" id="bgc-9L-PAG"/>
+            </connections>
+            <point key="canvasLocation" x="403" y="293"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="page3_bottom_icon_heart_h" width="22" height="22"/>
+        <image name="page3_bottom_icon_heart_n" width="22" height="22"/>
+        <image name="page3_bottom_icon_like_h" width="22" height="22"/>
+        <image name="page3_bottom_icon_like_n" width="22" height="22"/>
+        <image name="page3_bottom_icon_return" width="22" height="22"/>
+        <image name="page3_bottom_icon_share" width="22" height="22"/>
+    </resources>
+</document>

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "369847CBB9529B2EA93D7F8C310DBA0C12A3662C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "369847CBB9529B2EA93D7F8C310DBA0C12A3662C" : 0,
+    "60BB11873AEC1BBF6DE7097E42BCF8548046DDA0" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3690D7A4-DEC9-470F-95A3-6D537DE051DE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "369847CBB9529B2EA93D7F8C310DBA0C12A3662C" : "MamiBabyCode_User\/",
+    "60BB11873AEC1BBF6DE7097E42BCF8548046DDA0" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MomBabyUserProject",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MomBabyUserProject\/MomBabyUserProject.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/luoyeyo\/MamiBabyCode_User.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "369847CBB9529B2EA93D7F8C310DBA0C12A3662C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.oschina.net\/luoyeIsSb\/doctorProject.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "60BB11873AEC1BBF6DE7097E42BCF8548046DDA0"
+    }
+  ]
+}
