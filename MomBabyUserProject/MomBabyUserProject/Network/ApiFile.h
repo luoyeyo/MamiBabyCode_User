@@ -26,6 +26,8 @@ static NSString *const kApiGetUserInfo = @"v1/users";
 static NSString *const kApiGetHomeMumInfo = @"v1/categories/pregnancy";
 // 获取首页 宝宝
 static NSString *const kApiGetHomeBabyInfo = @"v1/categories/kid";
+// 获取推荐阅读
+static NSString *const kApiGetRecommendList = @"v1/related/articles";
 
 #pragma mark - message
 

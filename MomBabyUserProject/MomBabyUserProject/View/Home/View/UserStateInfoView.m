@@ -61,6 +61,7 @@
     self.topOne.text = @"身高";
     self.topTow.text = @"已出生";
     self.topThree.text = @"体重";
+    ReturnIf(kUserInfo.currentBaby.birth.integerValue == 0);
     // 出生天数
     GestationalWeeks *day = [NSDate calculationIntervalWeeksWithStart:kUserInfo.currentBaby.birth.doubleValue end:[NSDate date].timeIntervalSince1970];
     self.bottomTow.text = [NSString stringWithFormat:@"%@天",day.allDay];
@@ -72,6 +73,7 @@
     } else {
         array = [DataManager getGirlHeightAndWeight];
     }
+//    UserInfoEntity *user = kUserInfo;
     NSString * babyHeight = @"-cm";
     NSString * babyKg = @"-kg";
     NSInteger month = day.allDay.integerValue / 30;

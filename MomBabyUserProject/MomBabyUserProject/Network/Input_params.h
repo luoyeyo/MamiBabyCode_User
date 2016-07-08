@@ -55,11 +55,6 @@
 // 生日
 @property (nonatomic, copy) NSString *birthday;
 
-// 条形码
-@property (nonatomic, copy) NSString *barCode;
-
-// 月龄
-@property (nonatomic, copy) NSNumber *mouthAge;
 
 #pragma mark - mine
 
@@ -76,7 +71,9 @@
 @property (nonatomic, copy) NSNumber *limit;
 @property (nonatomic, copy) NSString *hospitalId;
 
-
+// 搜索
+@property (nonatomic, copy) NSString *title;
+// 经纬度
 @property (nonatomic, copy) NSNumber *lng;
 @property (nonatomic, copy) NSNumber *lat;
 

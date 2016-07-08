@@ -14,6 +14,7 @@
 #import "TimeLineCollectionView.h"
 #import "SelfViewController.h"
 #import "BillboardView.h"
+#import "UserCheckInfoView.h"
 
 @interface HomeViewController ()<UIScrollViewDelegate,TimeLineDidChangeDelegate> {
     Input_params *_params;
@@ -38,8 +39,11 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *baseScrollView;
 // 姓名
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+
+#pragma mark - 中间
 // 中间的view
-@property (strong, nonatomic) IBOutlet UIView *middleBaseView;
+@property (strong, nonatomic) IBOutlet UserCheckInfoView *middleBaseView;
+
 // 整个底层view的高度约束
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *baseViewHeight;
 // 显示用户的3条数据
@@ -91,7 +95,6 @@
     _params.page = @1;
     _params.limit = @100;
     self.timeLine.timeLineDidChangeDelegate = self;
-    
     [self setUserInfo];
     // 判断是游客登陆还是注册用户登陆
     if (kUserInfo.isLogined) [kUserInfo updateUserInfo];
@@ -101,6 +104,7 @@
 
 - (void)registerNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setUserInfo) name:kNotiModifyUserInfo object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setUIContent) name:kNotiUpdateLikeCountData object:nil];
 }
 
 /**
@@ -112,6 +116,7 @@
         [self.view hidePopupLoading];
         if (!error) {
             [self setUIContent];
+            [self.middleBaseView updateCheckInfo];
         } else {
             [self.view showToastMessage:error.errormsg];
         }
@@ -119,7 +124,6 @@
 }
 
 - (void)setUserInfo {
-    [self.userInfoView updateInfo];
     
     if (kUserInfo.isLogined) {
         // 头像
@@ -143,6 +147,7 @@
             self.nameLabel.text = kUserInfo.currentBaby.nickname;
         }
     }
+    [self.userInfoView updateInfo];
 }
 
 - (void)setUIContent {
@@ -150,16 +155,26 @@
     [self.guideInfoTab reloadData];
     // 计算高度
     self.guideInfoTab.height = self.guideInfoTab.tableHeight;
-    self.baseViewHeight.constant = CGRectGetMaxY(self.guideInfoTab.frame);;
+    self.baseViewHeight.constant = CGRectGetMaxY(self.guideInfoTab.frame);
+    [self.userInfoView updateInfo];
 }
 
 - (IBAction)showSelectBabyView:(UIButton *)sender {
     SelectBabyView *view = [SelectBabyView defaultClassNameNibViewWithFrame:kAppDelegate.window.bounds];
     WS(weakSelf);
     [view setSelectBabyBlock:^(NSInteger index) {
-        kUserInfo.currentBaby = kUserInfo.babys[index];
-        [kUserInfo synchronize];
+        // 妈咪
+        if (index == 0) {
+            kUserInfo.status = kUserStateMum;
+        } else {
+            kUserInfo.status = kUserStateChild;
+            // 去掉妈妈占的1  所以-1
+            kUserInfo.currentBaby = kUserInfo.babys[index - 1];
+            [kUserInfo synchronize];
+        }
         [weakSelf setUserInfo];
+        // 时间轴刷新后 会自动选中今天  进行请求
+        [weakSelf.timeLine updateInfo];
     }];
     [view show];
 }
@@ -244,7 +259,17 @@
         _guideInfoTab.scrollEnabled = NO;
         WS(weakself);
         [_guideInfoTab setSelectCellBlock:^(NSInteger index){
-            kShareManager_Home.currentArticleId = kShareManager_Home.homeInfo.list[index];
+            // 如果有高危列表
+            if (kShareManager_Home.homeInfo.highRiskArticle != nil) {
+                // 点击高危
+                if (index == 0) {
+                    kShareManager_Home.currentArticleId = kShareManager_Home.homeInfo.highRiskArticle;
+                } else {
+                    kShareManager_Home.currentArticleId = kShareManager_Home.homeInfo.list[index - 1];
+                }
+            } else {
+                kShareManager_Home.currentArticleId = kShareManager_Home.homeInfo.list[index];
+            }
             [weakself performSegueWithIdentifier:@"GuideInfoViewController" sender:weakself];
         }];
     }

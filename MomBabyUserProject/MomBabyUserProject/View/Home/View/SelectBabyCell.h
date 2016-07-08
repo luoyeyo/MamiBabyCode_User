@@ -14,4 +14,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *genderIcon;
 @property (nonatomic, strong) BabyInfoModel *babyInfo;
+- (void)isMum;
 @end

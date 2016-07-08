@@ -43,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"营养百科";
+//    self.title = @"营养百科";
     self.view.backgroundColor = [UIColor whiteColor];
     self.bottomDataSource = [[NSMutableArray alloc] init];
     _page = 1;

@@ -36,6 +36,14 @@
 
 - (void)defaultConfig {
     
+    self.delegate = self;
+    self.dataSource = self;
+    self.showsHorizontalScrollIndicator = NO;
+    [self setCollectionViewLayout:[[HMLineLayout alloc] init] animated:YES];
+    [self updateInfo];
+}
+
+- (void)updateInfo {
     // 计算数据源
     CalendarLogic * Logic = [[CalendarLogic alloc]init];
     NSInteger allDay = 0;
@@ -49,13 +57,9 @@
     }
     // 获取时间数组
     self.daysArray = [Logic reloadCalendarView:date selectDate:[NSDate date] needDays:allDay];
-    self.delegate = self;
-    self.dataSource = self;
-    self.showsHorizontalScrollIndicator = NO;
-    [self setCollectionViewLayout:[[HMLineLayout alloc] init] animated:YES];
-    
     // 当天的index
     todayIndex = Logic.todayIndex;
+    [self reloadData];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:Logic.todayIndex + 2 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         [self.timeLineDidChangeDelegate timeLineDidChangeToDay:self.daysArray[Logic.todayIndex]];

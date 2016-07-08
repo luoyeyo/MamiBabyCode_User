@@ -21,7 +21,7 @@
  *  @param sender
  */
 - (IBAction)likeThisArticle:(UIButton *)sender {
-    [self.delegate selectBottomBarWithIndex:1];
+    [self.delegate selectBottomBarWithIndex:1 isSelected:!sender.selected];
     if (sender.isSelected == YES) {
         [[Network_Discover new] deleteCollectThisArticlesWithId:kShareManager_Home.currentArticleId.article.Id ResponseBlock:^(LLError *error) {
             if (!error) {
@@ -45,25 +45,33 @@
 - (IBAction)support:(UIButton *)sender {
     if (sender.isSelected == YES) {
         [[Network_Discover new] deleteLikeThisArticlesWithId:kShareManager_Home.currentArticleId.article.Id ResponseBlock:^(LLError *error) {
-            
+            if (!error) {
+                // 当前选中的
+                NSInteger likeCount = kShareManager_Home.currentArticleId.article.likeCount;
+                kShareManager_Home.currentArticleId.article.likeCount = likeCount - 1;
+            }
         }];
     } else {
         [[Network_Discover new] postLikeThisArticlesWithId:kShareManager_Home.currentArticleId.article.Id ResponseBlock:^(LLError *error) {
-            
+            if (!error) {
+                // 当前选中的
+                NSInteger likeCount = kShareManager_Home.currentArticleId.article.likeCount;
+                kShareManager_Home.currentArticleId.article.likeCount = likeCount + 1;
+            }
         }];
     }
     sender.selected = !sender.selected;
-    [self.delegate selectBottomBarWithIndex:2];
+    [self.delegate selectBottomBarWithIndex:2 isSelected:sender.isSelected];
 }
 
 - (IBAction)shareThisInfo:(UIButton *)sender {
     
-    [self.delegate selectBottomBarWithIndex:3];
+    [self.delegate selectBottomBarWithIndex:3 isSelected:sender.isSelected];
 }
 
 - (IBAction)backToLast:(UIButton *)sender {
     
-    [self.delegate selectBottomBarWithIndex:0];
+    [self.delegate selectBottomBarWithIndex:0 isSelected:sender.isSelected];
 }
 
 - (void)setInfo:(ArticleDetailsModel *)info {

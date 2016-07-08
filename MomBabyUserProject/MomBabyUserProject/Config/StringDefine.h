@@ -24,6 +24,7 @@ static NSString *const kNotiCollectionSuccess = @"成功收藏";
 static NSString *const kNotiCancelCollectionSuccess = @"成功取消收藏";
 static NSString *const kNotiLikeSuccess = @"成功点赞";
 static NSString *const kNotiCancelLikeSuccess = @"成功取消点赞";
+static NSString *const kNotiUpdateLikeCountData = @"首页刷新点赞数";
 /**
  *  角标变化
  */

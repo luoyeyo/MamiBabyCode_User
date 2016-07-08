@@ -34,7 +34,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (kShareManager_Home.homeInfo.categories != nil) {
+    if (kShareManager_Home.homeInfo.highRiskArticle != nil) {
         return kShareManager_Home.homeInfo.list.count + 1;
     }
     return kShareManager_Home.homeInfo.list.count;
@@ -58,34 +58,42 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // AA BB AA交错布局
+    // AA BB AA交错布局   当有高危时候  高危第一个  其他依次往后排
     if (indexPath.section % 4 == 1 || indexPath.section % 4 == 0) {
         OneGuideInfoCell *cell = [OneGuideInfoCell defaultClassNameNibView];
-        if (kShareManager_Home.homeInfo.categories != nil && indexPath.section == 0) {
-            cell.categoriesModel = kShareManager_Home.homeInfo.categories;
+        if (kShareManager_Home.homeInfo.highRiskArticle != nil && indexPath.section == 0) {
+            cell.model = kShareManager_Home.homeInfo.highRiskArticle;
         } else {
-            cell.model = kShareManager_Home.homeInfo.list[indexPath.section];
+            cell.model = kShareManager_Home.homeInfo.list[indexPath.section - 1];
         }
         return cell;
     }
+    NSInteger index = indexPath.section;
     TwoGuideInfoCell *cell = [TwoGuideInfoCell defaultClassNameNibView];
-    cell.model = kShareManager_Home.homeInfo.list[indexPath.section];
+    if (kShareManager_Home.homeInfo.highRiskArticle != nil) {
+        index -= 1;
+    }
+    cell.model = kShareManager_Home.homeInfo.list[index];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self deselectRowAtIndexPath:indexPath animated:YES];
-    NSInteger index = indexPath.section;
-    if (kShareManager_Home.homeInfo.categories != nil) {
-        index -= 1;
-    }
+//    NSInteger index = indexPath.section;
+//    if (kShareManager_Home.homeInfo.highRiskArticle != nil) {
+//        index -= 1;
+//    }
     if (self.selectCellBlock) {
         self.selectCellBlock(indexPath.section);
     }
 }
 
 - (CGFloat)tableHeight {
-    return (kShareManager_Home.homeInfo.list.count - 1) * 130 + 120 + kShareManager_Home.homeInfo.list.count * 3;
+    NSInteger index = kShareManager_Home.homeInfo.list.count - 1;
+    if (kShareManager_Home.homeInfo.highRiskArticle != nil) {
+        index += 1;
+    }
+    return index * 130 + 120 + kShareManager_Home.homeInfo.list.count * 3;
 }
 
 @end

@@ -13,9 +13,9 @@
 /**
  *  4个按钮从左到右 0 1 2 3
  *
- *  @param index 
+ *  @param index 标示点的是哪一个 isSelected yes代表是选中 no取消选中
  */
-- (void)selectBottomBarWithIndex:(NSInteger)index;
+- (void)selectBottomBarWithIndex:(NSInteger)index isSelected:(BOOL)isSelected;
 
 @end
 @interface GuideBottomBar : UIView

@@ -22,6 +22,7 @@
         _iconImage = [[UIImageView alloc] initWithFrame:CGRectMake(iconImageX, iconImageY, iconImageW, iconImageH)];
         _iconImage.layer.masksToBounds = YES;
         _iconImage.layer.cornerRadius = 3;
+        _iconImage.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:_iconImage];
         
         CGFloat titleX = iconImageX * 2 + iconImageW;

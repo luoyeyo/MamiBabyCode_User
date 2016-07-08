@@ -77,11 +77,12 @@
     long long oneDay = 60 * 60 * 24;
     long long timeInterval = endDate - startDate + oneDay;
     GestationalWeeks *weeks = [[GestationalWeeks alloc] init];
-    if (timeInterval < 0) {
-        weeks.week = @0;
-        weeks.day = @0;
-        return weeks;
-    }
+//    if (timeInterval < 0) {
+//        weeks.week = @0;
+//        weeks.day = @0;
+//        weeks.allDay = @0;
+//        return weeks;
+//    }
     weeks.week = @((NSInteger)(timeInterval / (oneDay * 7)));
     // 孕周差了一天
     weeks.day = @((NSInteger)((timeInterval / oneDay) % 7));

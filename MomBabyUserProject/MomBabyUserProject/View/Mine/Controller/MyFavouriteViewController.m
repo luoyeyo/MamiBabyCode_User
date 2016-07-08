@@ -154,6 +154,7 @@
     params.limit = @20;
     [[Network_Mine new] getMyCollectionArticlesWith:params responseBlock:^(LLError *err, id responseData) {
         if (!err) {
+            [self.dataArr removeAllObjects];
             [self.dataArr addObjectsFromArray:[responseData objectForKey:@"list"]];
             
             if ([[responseData objectForKey:@"list"] count] < 20) {
@@ -162,7 +163,7 @@
             else if ([[responseData objectForKey:@"list"] count] == 20){
                 self.superTableView.mj_footer.hidden = NO;
             }
-            
+            NSLog(@"%@",responseData);
             [self.superTableView reloadData];
         } else {
             [self.view showToastMessage:err.errormsg];
@@ -184,16 +185,15 @@
     self.superTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(addHeader)];
     self.superTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(addFooter)];
     [self.superTableView.mj_header beginRefreshing];
-    [self addHeader];
 }
 
-- (void)addHeader{
+- (void)addHeader {
     _page = 1;
     [self.dataArr removeAllObjects];
     [self conntect];
 }
 
-- (void)addFooter{
+- (void)addFooter {
     _page++;
     [self conntect];
 }

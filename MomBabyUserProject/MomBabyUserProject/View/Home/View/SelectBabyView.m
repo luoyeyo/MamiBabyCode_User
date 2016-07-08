@@ -16,7 +16,6 @@
 @implementation SelectBabyView
 
 - (void)awakeFromNib {
-    UserInfoEntity *user = kUserInfo;
     self.alpha = 0;
 }
 
@@ -29,20 +28,22 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == kUserInfo.babys.count) {
+    // 第一个是家长 最后一个是取消
+    if (indexPath.row == kUserInfo.babys.count + 1) {
         UITableViewCell *cell = [self createCancelCell];
         return cell;
     } else if (indexPath.row == 0) {
         SelectBabyCell *cell = [SelectBabyCell defaultClassNameNibView];
         [cell addLineTo:kFrameLocationBottom color:kColorLineGray];
         cell.row = indexPath.row;
-        cell.babyInfo = kUserInfo.babys[indexPath.row];
+        [cell isMum];
         return cell;
     } else {
         SelectBabyCell *cell = [SelectBabyCell defaultClassNameNibView];
         [cell addLineTo:kFrameLocationBottom color:kColorLineGray];
-        cell.row = indexPath.row;
-        cell.babyInfo = kUserInfo.babys[indexPath.row];
+        // 因为第一个是妈妈
+        cell.row = indexPath.row - 1;
+        cell.babyInfo = kUserInfo.babys[indexPath.row - 1];
         return cell;
     }
 }
@@ -61,7 +62,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotiSelectThisBaby object:@(indexPath.row)];
-    if (kUserInfo.babys.count != indexPath.row) {
+    // 点取消 不传
+    if (kUserInfo.babys.count + 1 != indexPath.row) {
         self.selectBabyBlock(indexPath.row);
     }
     [self dismis];

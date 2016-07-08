@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35C07964AC77ADB819A7EBF1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62315CB8FBE9F148F9896A03 /* libPods.a */; };
+		B152496B1D2C97D60019545E /* UserCheckInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B152496A1D2C97D60019545E /* UserCheckInfoView.m */; };
 		B1F1011C1D22090C00A1004D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F1011B1D22090C00A1004D /* main.m */; };
 		B1F101251D22090C00A1004D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F101231D22090C00A1004D /* Main.storyboard */; };
 		B1F101271D22090C00A1004D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1F101261D22090C00A1004D /* Assets.xcassets */; };
@@ -268,6 +269,8 @@
 /* Begin PBXFileReference section */
 		62315CB8FBE9F148F9896A03 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		773254561196709EECC94940 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B15249691D2C97D60019545E /* UserCheckInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCheckInfoView.h; sourceTree = "<group>"; };
+		B152496A1D2C97D60019545E /* UserCheckInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCheckInfoView.m; sourceTree = "<group>"; };
 		B1F101171D22090C00A1004D /* MomBabyUserProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomBabyUserProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1F1011B1D22090C00A1004D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1F101241D22090C00A1004D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1586,6 +1589,8 @@
 				B1F102BA1D220DC900A1004D /* UserStateInfoView.m */,
 				B1F102BB1D220DC900A1004D /* WaterWavesView.h */,
 				B1F102BC1D220DC900A1004D /* WaterWavesView.m */,
+				B15249691D2C97D60019545E /* UserCheckInfoView.h */,
+				B152496A1D2C97D60019545E /* UserCheckInfoView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2188,6 +2193,7 @@
 				B1F1039A1D220DC900A1004D /* UIView+Util.m in Sources */,
 				B1F103D41D220DC900A1004D /* HMLineLayout.m in Sources */,
 				B1F103691D220DC900A1004D /* IQTextView.m in Sources */,
+				B152496B1D2C97D60019545E /* UserCheckInfoView.m in Sources */,
 				B1F103581D220DC900A1004D /* CalendarLogic.m in Sources */,
 				B1F103F21D220DC900A1004D /* HospitalNameView.m in Sources */,
 				B1F103631D220DC900A1004D /* IQUIView+Hierarchy.m in Sources */,

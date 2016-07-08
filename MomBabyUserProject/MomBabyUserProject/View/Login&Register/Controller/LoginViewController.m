@@ -44,7 +44,7 @@
     _verifyTF.tintColor = kColorTint;
     _phoneTF.tintColor = kColorTint;
     self.navigationController.navigationBar.hidden = YES;
-    _phoneTF.text = @"18828078986";
+    _phoneTF.text = @"18782905385";
     UIEdgeInsets insets = UIEdgeInsetsMake(20, (ScreenWidth - 70) / 2, 20, (ScreenWidth - 70) / 2);
     UIImage *image = ImageNamed(@"page1_btn");
     image = [image resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeTile];

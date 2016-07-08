@@ -44,7 +44,7 @@
         }
     } else {
         // 没有孕期的话就是宝宝
-        if (![NSString isEmptyString:kUserInfo.dueDateStr]) {
+        if ([NSString isEmptyString:kUserInfo.dueDateStr]) {
             isMum = NO;
         }
     }
@@ -102,6 +102,7 @@
     {
         WikiViewController *wiki = [[WikiViewController alloc] init];
         wiki.parentId = model.Id;
+        wiki.title = model.title;
         wiki.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:wiki animated:YES];
     }

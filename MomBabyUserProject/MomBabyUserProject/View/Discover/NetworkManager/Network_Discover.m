@@ -51,7 +51,12 @@
 
 - (void)postCollectThisArticlesWithId:(NSString *)articlesId ResponseBlock:(void (^)(LLError *error))responseBlock {
 //    NSString *url = [NSString stringWithFormat:@"%@/%@",kPOST_COLLECT_ARTICLES,articlesId];
-    NSString *url = [kPOST_COLLECT_ARTICLES stringByReplacingOccurrencesOfString:@"articlesId" withString:articlesId];
+    NSString *url;
+    if ([articlesId isKindOfClass:[NSNumber class]]) {
+        url = [kPOST_COLLECT_ARTICLES stringByReplacingOccurrencesOfString:@"articlesId" withString:[NSString stringWithFormat:@"%@",articlesId]];
+    } else {
+        url = [kPOST_COLLECT_ARTICLES stringByReplacingOccurrencesOfString:@"articlesId" withString:articlesId];
+    }
     [self post:url params:nil additionalHeader:nil response:^(LLError *error, id responseData) {
         if (!error) {
             [[NSNotificationCenter defaultCenter] postNotificationName:kNotiCollectionSuccess object:nil];

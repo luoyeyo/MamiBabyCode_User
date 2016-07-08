@@ -16,7 +16,7 @@
     self.categoryTitle.text = model.article.title;
     self.content.text = model.article.introduction;
     [self.icon sd_setImageWithURL:[NSURL URLWithString:model.iconimage.real]];
-    self.likeNum.text = [NSString stringWithFormat:@"%ld",model.likeCount];
+    self.likeNum.text = [NSString stringWithFormat:@"%ld",model.article.likeCount];
 }
 
 @end

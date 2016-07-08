@@ -19,13 +19,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MomBabyUserProject/View/Discover/Controller/DiscoverViewController.m"
-            timestampString = "488969746.954604"
+            filePath = "MomBabyUserProject/View/Discover/Controller/Native/RecoverViewController.m"
+            timestampString = "489480260.486127"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "-requesrDefaultData"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MomBabyUserProject/View/Home/NetworkManager/Network_Home.m"
+            timestampString = "489576152.72395"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-getRecommendArticlesListWithId:responseBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -22,6 +22,7 @@
 @interface TimeLineCollectionView : UICollectionView <UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, assign) id<TimeLineDidChangeDelegate> timeLineDidChangeDelegate;
 
+- (void)updateInfo;
 - (void)today;
 
 @end

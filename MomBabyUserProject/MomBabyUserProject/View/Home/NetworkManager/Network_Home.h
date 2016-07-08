@@ -42,6 +42,8 @@
  *  @param responseBlock 
  */
 - (void)getArticlesDetailsInfoWithId:(NSString *)Id responseBlock:(void (^)(LLError *error,ArticleDetailsModel *data))responseBlock;
+
+- (void)getRecommendArticlesListWithId:(NSString *)Id responseBlock:(void (^)(LLError *error,DiscoverListModel *data))responseBlock;
 //
 ///**
 // *  添加宝宝

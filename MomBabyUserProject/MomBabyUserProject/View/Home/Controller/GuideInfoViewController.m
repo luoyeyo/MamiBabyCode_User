@@ -12,7 +12,6 @@
 #import "RelatedReadingTableView.h"
 #import "ArticleLikeNumView.h"
 
-
 @interface GuideInfoViewController ()<GuideBottomBarSelectDelegate,UIWebViewDelegate,UITableViewDelegate,UITableViewDataSource> {
     ArticleDetailsModel *_articleInfo;
 }
@@ -46,6 +45,13 @@
     self.baseScrollView.delegate = self;
     [self setTopBarInfo];
     [self getArticlesDetailsInfo];
+    [self getRecommendList];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    // 告诉首页 去刷新各个数据的点赞
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotiUpdateLikeCountData object:nil];
 }
 
 #pragma mark - private
@@ -67,6 +73,12 @@
 
 }
 
+- (void)getRecommendList {
+    [kShareManager_Home getRecommendArticlesListWithId:kShareManager_Home.currentArticleId.article.Id responseBlock:^(LLError *error, DiscoverListModel *data) {
+        
+    }];
+}
+
 - (void)setUIContent {
     [self webViewLoadDataWithUrl:_articleInfo.content];
     [self setBottomBarInfo];
@@ -81,15 +93,27 @@
     self.topIntro.text = kShareManager_Home.currentArticleId.title;
 }
 
+- (void)setLikeCountData {
+    _likeNumView.likeNum.text = [NSString stringWithFormat:@"%ld",_articleInfo.likeCount];
+}
+
 #pragma mark - bottomBar
 
-- (void)selectBottomBarWithIndex:(NSInteger)index {
+- (void)selectBottomBarWithIndex:(NSInteger)index isSelected:(BOOL)isSelected {
     switch (index) {
         case 0:
             [self popViewController];
             break;
-           case 3:
-            [ShareManager shareTitle:@"妈咪贝比" text:kShareManager_Home.currentArticleId.article.title url:kShareUrl];
+        case 3:
+            [ShareManager shareTitle:@"妈咪贝比" text:kShareManager_Home.currentArticleId.article.title url:_articleInfo.shareUrl];
+            break;
+        case 2:
+            if (isSelected) {
+                _articleInfo.likeCount ++;
+            } else {
+                _articleInfo.likeCount --;
+            }
+            [self setLikeCountData];
             break;
         default:
             break;
@@ -118,8 +142,8 @@
     
     // 喜欢数目
     [self.webView addSubview:self.likeNumView];
-    _likeNumView.likeNum.text = [NSString stringWithFormat:@"%ld",_articleInfo.likeCount];
     self.likeNumView.frame = CGRectMake(0, documentHeight, ScreenWidth, 50);
+    [self setLikeCountData];
 
     self.relatedReading.height = self.relatedReading.tableHeight;
     [self.baseScrollView reloadData];

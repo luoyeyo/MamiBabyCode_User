@@ -15,7 +15,7 @@
     self.title.text = model.title;
     self.categoryTitle.text = model.article.title;
     self.content.text = model.article.introduction;
-    self.likeNum.text = [NSString stringWithFormat:@"%ld",model.likeCount];
+    self.likeNum.text = [NSString stringWithFormat:@"%ld",model.article.likeCount];
 }
 
 @end

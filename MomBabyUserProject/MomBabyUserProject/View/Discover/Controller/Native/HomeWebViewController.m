@@ -147,7 +147,7 @@
 }
 
 #pragma mark - bottom View  收藏 和 分享 点击方法
-- (void)collectBtnAction{
+- (void)collectBtnAction {
     
     if (kUserInfo.isLogined) {
         if (self.collectBtn.selected == YES) {
@@ -161,6 +161,7 @@
     } else {
         [kAppDelegate toPresentLogin];
     }
+    self.collectBtn.selected = !self.collectBtn.selected;
 }
 
 - (void)shareBtnAction {

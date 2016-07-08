@@ -20,6 +20,4 @@
 @property (strong, nonatomic) IBOutlet UILabel *content;
 @property (strong, nonatomic) IBOutlet UIImageView *tagImage;
 @property (nonatomic, strong) DiscoverModel *model;
-// 危急信息
-@property (nonatomic, strong) CategoriesModel *categoriesModel;
 @end

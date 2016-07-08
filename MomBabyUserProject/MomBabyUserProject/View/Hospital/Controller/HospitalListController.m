@@ -12,13 +12,14 @@
 #import "HospitalViewController.h"
 #import "LogInViewController.h"
 
-@interface HospitalListController ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate> {
+@interface HospitalListController ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate,UISearchBarDelegate> {
     Input_params *_params;
     NSMutableArray *_dataArr;
     BMKLocationService * _locService;
     BOOL _requestDefault;
     BOOL _locationServices;
 }
+@property (nonatomic, strong) UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -30,11 +31,19 @@
     _locationServices = NO;
     self.navTitle.text = @"医院列表";
     self.tableView.tableFooterView = [UIView new];
+    self.tableView.tableHeaderView = self.searchBar;
     
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestDefaultList)];
     _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
     _requestDefault = NO;
     [self initDataSource];
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.tableView.contentOffset = CGPointMake(0, 40);
 }
 
 - (void)initDataSource {
@@ -48,13 +57,13 @@
 - (void)checkLocationInfo {
     
     if ([CLLocationManager locationServicesEnabled] &&
-        ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized
+        ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways
          || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)) {
             //定位功能可用，开始定位
             [self getLocation];
         } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请打开定位功能" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
-//            [alert show];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"请打开定位功能以精确获取您附近的医院信息" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
             [self getDefaultHosiptalList];
         } else {
             //定位功能可用，开始定位
@@ -133,6 +142,8 @@
     
 }
 
+#pragma mark - baiduMap
+
 //百度定位
 - (void)getLocation {
     _locService = [[BMKLocationService alloc] init];
@@ -159,6 +170,15 @@
 - (void)didFailToLocateUserWithError:(NSError *)error {
     [self getDefaultHosiptalList];
 }
+
+#pragma mark - search
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    _params.title = searchText;
+    [self.view showPopupLoading];
+    [self requestData];
+}
+
 /**
  *  获取默认医院列表
  */
@@ -168,5 +188,19 @@
     [self requestData];
 }
 
+- (UISearchBar *)searchBar {
+    if (_searchBar == nil) {
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 70)];
+        _searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        // 设置大小
+        _searchBar.placeholder = @"输入医院名称搜索";
+        [_searchBar sizeToFit];
+        _searchBar.backgroundImage = [UIImage imageWithColor:kColorLineGray];
+        _searchBar.barTintColor = [UIColor lightGrayColor];
+        // 设置协议
+        _searchBar.delegate = self;
+    }
+    return _searchBar;
+}
 
 @end

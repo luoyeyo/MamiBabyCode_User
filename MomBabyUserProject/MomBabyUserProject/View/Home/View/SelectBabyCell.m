@@ -32,4 +32,9 @@
     self.genderIcon.image = ImageNamed(genderImageName);
 }
 
+- (void)isMum {
+    self.nameLabel.text = kUserInfo.nickname;
+    self.genderIcon.image = ImageNamed(@"page2_icon_mom");
+}
+
 @end

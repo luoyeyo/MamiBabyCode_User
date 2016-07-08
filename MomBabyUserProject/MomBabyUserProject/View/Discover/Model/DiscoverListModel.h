@@ -25,9 +25,14 @@
 @end
 
 @interface DiscoverListModel : HttpResponseData
-// 首页用的高危
-@property (nonatomic, strong) CategoriesModel *categories;
+
+@property (nonatomic, assign) NSTimeInterval nextCheckTime;
+
+//@property (nonatomic, strong) CategoriesModel *categories;
+// 首页用的高危文章
+@property (nonatomic, strong) DiscoverModel *highRiskArticle;
 // 首页用的id
 @property (nonatomic, copy) NSString *hospitalId;
+
 @property (nonatomic, copy) NSArray<DiscoverModel> *list;
 @end
