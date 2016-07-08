@@ -32,6 +32,8 @@
     if (week.allDay.integerValue < 0) {
         self.introText.text = @"您已逾期";
     }
+    self.title.text = @"母体周变化";
+    self.content.text = kShareManager_Home.homeInfo.motherWeekChange.introduction;
 }
 
 @end

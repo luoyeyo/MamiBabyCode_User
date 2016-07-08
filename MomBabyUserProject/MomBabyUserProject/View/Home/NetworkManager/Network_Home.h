@@ -17,8 +17,6 @@
 
 // 首页数据
 @property (nonatomic, strong) DiscoverListModel *homeInfo;
-// 当前阅读的文章
-@property (nonatomic, strong) DiscoverModel *currentArticleId;
 
 + (instancetype)sharedManager;
 /**
@@ -43,7 +41,7 @@
  */
 - (void)getArticlesDetailsInfoWithId:(NSString *)Id responseBlock:(void (^)(LLError *error,ArticleDetailsModel *data))responseBlock;
 
-- (void)getRecommendArticlesListWithId:(NSString *)Id responseBlock:(void (^)(LLError *error,DiscoverListModel *data))responseBlock;
+- (void)getRecommendArticlesListWithId:(NSString *)Id responseBlock:(void (^)(LLError *error,ArticleListModel *data))responseBlock;
 //
 ///**
 // *  添加宝宝

@@ -9,7 +9,7 @@
 #import "GuideInfoViewController.h"
 #import "GuideBottomBar.h"
 #import <WebKit/WebKit.h>
-#import "RelatedReadingTableView.h"
+#import "RecommendReadingTableView.h"
 #import "ArticleLikeNumView.h"
 
 @interface GuideInfoViewController ()<GuideBottomBarSelectDelegate,UIWebViewDelegate,UITableViewDelegate,UITableViewDataSource> {
@@ -27,10 +27,12 @@
 // 底部工具栏
 @property (strong, nonatomic) GuideBottomBar *bottomBar;
 // 推荐阅读
-@property (strong, nonatomic) RelatedReadingTableView *relatedReading;
+@property (strong, nonatomic) RecommendReadingTableView *recommendTableView;
+
 @property (strong, nonatomic) UIWebView *webView;
 // 顶部的遮挡状态栏的 bar
 @property (strong, nonatomic) UIView *topLineBar;
+
 @property (strong, nonatomic) ArticleLikeNumView *likeNumView;
 @end
 
@@ -50,8 +52,10 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    // 告诉首页 去刷新各个数据的点赞
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotiUpdateLikeCountData object:nil];
+    if ([[self.navigationController.viewControllers objectAtIndex:0] isEqual:self]) {
+        // 是主文章（第一篇 和主页的数据是绑定的 之后的页面没有关联）告诉首页 去刷新各个数据的点赞
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotiUpdateLikeCountData object:nil];
+    }
 }
 
 #pragma mark - private
@@ -61,7 +65,7 @@
  */
 - (void)getArticlesDetailsInfo {
     [self.view showPopupLoading];
-    [kShareManager_Home getArticlesDetailsInfoWithId:kShareManager_Home.currentArticleId.article.Id responseBlock:^(LLError *error,ArticleDetailsModel *data) {
+    [kShareManager_Home getArticlesDetailsInfoWithId:self.currentArticle.article.Id responseBlock:^(LLError *error,ArticleDetailsModel *data) {
         [self.view hidePopupLoading];
         if (error) {
             [self.view showToastMessage:error.errormsg];
@@ -70,14 +74,61 @@
             [self setUIContent];
         }
     }];
-
 }
 
+// 获取推荐列表
 - (void)getRecommendList {
-    [kShareManager_Home getRecommendArticlesListWithId:kShareManager_Home.currentArticleId.article.Id responseBlock:^(LLError *error, DiscoverListModel *data) {
-        
+    [kShareManager_Home getRecommendArticlesListWithId:self.currentArticle.article.Id responseBlock:^(LLError *error, ArticleListModel *data) {
+        if (!error && data.list.count > 0) {
+            self.recommendTableView.list = [data.list mutableCopy];
+            [self.recommendTableView reloadData];
+            [self.baseScrollView reloadData];
+        }
     }];
 }
+
+// 收藏
+- (void)colloct {
+    [[Network_Discover new] postCollectThisArticlesWithId:self.currentArticle.article.Id ResponseBlock:^(LLError *error) {
+        if (!error) {
+            [kAppDelegate.window showToastMessage:@"收藏成功"];
+        }
+    }];
+    _articleInfo.collectCount ++;
+}
+// 取消收藏
+- (void)deleteColletcion {
+    [[Network_Discover new] deleteCollectThisArticlesWithId:self.currentArticle.article.Id ResponseBlock:^(LLError *error) {
+        if (!error) {
+            [kAppDelegate.window showToastMessage:@"成功取消收藏"];
+        }
+    }];
+    _articleInfo.collectCount --;
+}
+// 点赞
+- (void)like {
+    [[Network_Discover new] postLikeThisArticlesWithId:self.currentArticle.article.Id ResponseBlock:^(LLError *error) {
+        if (!error) {
+            // 当前选中的
+            NSInteger likeCount = self.currentArticle.article.likeCount;
+            self.currentArticle.article.likeCount = likeCount + 1;
+        }
+    }];
+    _articleInfo.likeCount ++;
+}
+// 取消点赞
+- (void)stopLike {
+    [[Network_Discover new] deleteLikeThisArticlesWithId:self.currentArticle.article.Id ResponseBlock:^(LLError *error) {
+        if (!error) {
+            // 当前选中的
+            NSInteger likeCount = self.currentArticle.article.likeCount;
+            self.currentArticle.article.likeCount = likeCount - 1;
+        }
+    }];
+    _articleInfo.likeCount --;
+}
+
+#pragma mark - private
 
 - (void)setUIContent {
     [self webViewLoadDataWithUrl:_articleInfo.content];
@@ -89,12 +140,14 @@
 }
 
 - (void)setTopBarInfo {
-    self.topTitle.text = kShareManager_Home.currentArticleId.article.title;
-    self.topIntro.text = kShareManager_Home.currentArticleId.title;
+    self.topTitle.text = self.currentArticle.article.title;
+    self.topIntro.text = self.currentArticle.title;
 }
 
+// 设置收藏数目和点赞数目
 - (void)setLikeCountData {
     _likeNumView.likeNum.text = [NSString stringWithFormat:@"%ld",_articleInfo.likeCount];
+    _likeNumView.collectionNum.text = [NSString stringWithFormat:@"%ld",_articleInfo.collectCount];
 }
 
 #pragma mark - bottomBar
@@ -105,17 +158,25 @@
             [self popViewController];
             break;
         case 3:
-            [ShareManager shareTitle:@"妈咪贝比" text:kShareManager_Home.currentArticleId.article.title url:_articleInfo.shareUrl];
+            [ShareManager shareTitle:@"妈咪贝比" text:self.currentArticle.article.title url:_articleInfo.shareUrl];
             break;
         case 2:
-            if (isSelected) {
-                _articleInfo.likeCount ++;
+            // 点赞
+            if (isSelected == YES) {
+                [self like];
             } else {
-                _articleInfo.likeCount --;
+                [self stopLike];
             }
             [self setLikeCountData];
             break;
         default:
+            // 收藏
+            if (isSelected == YES) {
+                [self colloct];
+            } else {
+                [self deleteColletcion];
+            }
+            [self setLikeCountData];
             break;
     }
 }
@@ -145,7 +206,7 @@
     self.likeNumView.frame = CGRectMake(0, documentHeight, ScreenWidth, 50);
     [self setLikeCountData];
 
-    self.relatedReading.height = self.relatedReading.tableHeight;
+    self.recommendTableView.height = self.recommendTableView.tableHeight;
     [self.baseScrollView reloadData];
 }
 
@@ -172,7 +233,7 @@
         // 中间的黑色间隔
         return 5;
     }
-    return self.relatedReading.height;
+    return self.recommendTableView.height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -183,7 +244,7 @@
         cell.backgroundColor = kColorBackground;
         return cell;
     } else {
-        return [self createRelatedReadingCell];
+        return [self createRecommendReadingCell];
     }
 }
 
@@ -201,9 +262,9 @@
     return cell;
 }
 
-- (UITableViewCell *)createRelatedReadingCell {
+- (UITableViewCell *)createRecommendReadingCell {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"RelatedReadingCell"];
-    [cell.contentView addSubview:self.relatedReading];
+    [cell.contentView addSubview:self.recommendTableView];
     return cell;
 }
 
@@ -234,11 +295,23 @@
     return _topLineBar;
 }
 
-- (RelatedReadingTableView *)relatedReading {
-    if (!_relatedReading) {
-        _relatedReading = [[RelatedReadingTableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 100) style:UITableViewStylePlain];
+- (RecommendReadingTableView *)recommendTableView {
+    if (!_recommendTableView) {
+        _recommendTableView = [[RecommendReadingTableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 100) style:UITableViewStylePlain];
+        WS(weakSelf);
+        [_recommendTableView setSelectCellBlock:^(NSInteger index) {
+            DiscoverModel *model = [DiscoverModel new];
+            model.article = [DiscoverModel new];
+            ArticleDetailsModel *article = weakSelf.recommendTableView.list[index];
+            model.article.Id = article.Id;
+            model.article.title = article.title;
+            model.title = @"相关阅读";
+            GuideInfoViewController *vc = [weakSelf.storyboard instantiateViewControllerWithIdentifier:@"GuideInfoViewController"];
+            vc.currentArticle = model;
+            [weakSelf pushViewController:vc];
+        }];
     }
-    return _relatedReading;
+    return _recommendTableView;
 }
 
 - (ArticleLikeNumView *)likeNumView {

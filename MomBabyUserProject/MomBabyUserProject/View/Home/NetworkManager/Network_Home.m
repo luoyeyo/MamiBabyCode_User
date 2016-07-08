@@ -61,13 +61,13 @@
     }];
 }
 
-- (void)getRecommendArticlesListWithId:(NSString *)Id responseBlock:(void (^)(LLError *error,DiscoverListModel *data))responseBlock {
+- (void)getRecommendArticlesListWithId:(NSString *)Id responseBlock:(void (^)(LLError *error,ArticleListModel *data))responseBlock {
     NSDictionary *dic = @{@"id":Id};
     [self get:kApiGetRecommendList params:dic additionalHeader:nil response:^(LLError *error, id responseData) {
         if (error) {
             responseBlock(error,nil);
         } else {
-            DiscoverListModel *model = [[DiscoverListModel alloc] initWithDictionary:responseData error:nil];
+            ArticleListModel *model = [[ArticleListModel alloc] initWithDictionary:responseData error:nil];
             responseBlock(nil,model);
         }
     }];

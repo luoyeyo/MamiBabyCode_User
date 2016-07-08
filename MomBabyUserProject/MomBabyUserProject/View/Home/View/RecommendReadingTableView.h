@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RelatedReadingTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
+@interface RecommendReadingTableView : UITableView<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, assign) CGFloat tableHeight;
 @property (nonatomic, copy) void(^selectCellBlock)(NSInteger index);
-
+@property (nonatomic, copy) NSMutableArray *list;
 @end

@@ -19,5 +19,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *categoryTitle;
 @property (strong, nonatomic) IBOutlet UILabel *content;
 @property (strong, nonatomic) IBOutlet UIImageView *tagImage;
+// 首页阅读列表
 @property (nonatomic, strong) DiscoverModel *model;
+// 用作推荐阅读列表
+@property (nonatomic, strong) ArticleDetailsModel *recommendModel;
 @end

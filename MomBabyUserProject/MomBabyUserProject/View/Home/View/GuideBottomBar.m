@@ -9,7 +9,9 @@
 #import "GuideBottomBar.h"
 
 @interface GuideBottomBar ()
+// 点赞
 @property (strong, nonatomic) IBOutlet UIButton *supportBtn;
+// 收藏
 @property (strong, nonatomic) IBOutlet UIButton *likeBtn;
 @end
 
@@ -22,19 +24,6 @@
  */
 - (IBAction)likeThisArticle:(UIButton *)sender {
     [self.delegate selectBottomBarWithIndex:1 isSelected:!sender.selected];
-    if (sender.isSelected == YES) {
-        [[Network_Discover new] deleteCollectThisArticlesWithId:kShareManager_Home.currentArticleId.article.Id ResponseBlock:^(LLError *error) {
-            if (!error) {
-                [kAppDelegate.window showToastMessage:@"成功取消收藏"];
-            }
-        }];
-    } else {
-        [[Network_Discover new] postCollectThisArticlesWithId:kShareManager_Home.currentArticleId.article.Id ResponseBlock:^(LLError *error) {
-            if (!error) {
-                [kAppDelegate.window showToastMessage:@"收藏成功"];
-            }
-        }];
-    }
     sender.selected = !sender.selected;
 }
 /**
@@ -43,23 +32,6 @@
  *  @param sender
  */
 - (IBAction)support:(UIButton *)sender {
-    if (sender.isSelected == YES) {
-        [[Network_Discover new] deleteLikeThisArticlesWithId:kShareManager_Home.currentArticleId.article.Id ResponseBlock:^(LLError *error) {
-            if (!error) {
-                // 当前选中的
-                NSInteger likeCount = kShareManager_Home.currentArticleId.article.likeCount;
-                kShareManager_Home.currentArticleId.article.likeCount = likeCount - 1;
-            }
-        }];
-    } else {
-        [[Network_Discover new] postLikeThisArticlesWithId:kShareManager_Home.currentArticleId.article.Id ResponseBlock:^(LLError *error) {
-            if (!error) {
-                // 当前选中的
-                NSInteger likeCount = kShareManager_Home.currentArticleId.article.likeCount;
-                kShareManager_Home.currentArticleId.article.likeCount = likeCount + 1;
-            }
-        }];
-    }
     sender.selected = !sender.selected;
     [self.delegate selectBottomBarWithIndex:2 isSelected:sender.isSelected];
 }
@@ -78,5 +50,7 @@
     _info = info;
     // 1是收藏
     self.likeBtn.selected = (info.favorite == 1) ? YES : NO;
+    // 1是点赞
+    self.supportBtn.selected = (info.isLike == 1) ? YES : NO;
 }
 @end

@@ -378,7 +378,7 @@ static YZKDBTool *tool = nil;
                 
                 
                 
-            }else if ([value isEqualToString:@"date"])
+            } else if ([value isEqualToString:@"date"])
                 
             {
                 
@@ -386,10 +386,9 @@ static YZKDBTool *tool = nil;
                 
                 [tempDic setValue:[result dateForColumn:key] forKey:key];
                 
+            } else if ([value isEqualToString:@"double"]) {
+                [tempDic setValue:@([result doubleForColumn:key]) forKey:key];
             }
-            
-            
-            
         }
         
         [tempArr addObject:tempDic];
@@ -397,9 +396,6 @@ static YZKDBTool *tool = nil;
     }
     
     return tempArr;
-    
-    
-    
 }
 
 -(BOOL)isOpenDatabese:(FMDatabase *)db

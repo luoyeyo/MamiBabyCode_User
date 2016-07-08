@@ -19,4 +19,13 @@
     self.likeNum.text = [NSString stringWithFormat:@"%ld",model.article.likeCount];
 }
 
+- (void)setRecommendModel:(ArticleDetailsModel *)recommendModel {
+    _recommendModel = recommendModel;
+    self.categoryTitle.text = recommendModel.title;
+    self.content.text = recommendModel.introduction;
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:recommendModel.image.real]];
+    self.likeNum.text = [NSString stringWithFormat:@"%ld",recommendModel.likeCount];
+}
+
+
 @end

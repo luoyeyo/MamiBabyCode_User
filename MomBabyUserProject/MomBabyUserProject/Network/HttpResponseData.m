@@ -84,10 +84,13 @@
     error.errorcode = code;
     error.errormsg = message;
     if (code == kHttpReturnCodeErrorNet) {
-        error.errormsg = @"服务器连接失败";
+        error.errormsg = @"网络好像不给力哦";
     }
     if (code == kHttpReturnCodeErrorNetFailed) {
-        error.errormsg = @"服务器连接失败";
+        error.errormsg = @"网络好像不给力哦";
+    }
+    if (code == kHttpReturnCodeErrorTimeOut) {
+        error.errormsg = @"网络好像不给力哦";
     }
     return error;
 }

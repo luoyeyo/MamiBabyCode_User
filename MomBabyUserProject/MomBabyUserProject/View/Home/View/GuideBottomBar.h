@@ -22,4 +22,6 @@
 @property (nonatomic, copy) void(^selectBlock)(NSInteger index);
 @property (nonatomic, assign) id<GuideBottomBarSelectDelegate>delegate;
 @property (nonatomic, strong) ArticleDetailsModel *info;
+// 当前阅读的文章
+@property (nonatomic, strong) DiscoverModel *currentArticleId;
 @end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35C07964AC77ADB819A7EBF1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62315CB8FBE9F148F9896A03 /* libPods.a */; };
+		41E02F421D2F94ED00D7490A /* UserInfoChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E02F411D2F94ED00D7490A /* UserInfoChangeModel.m */; };
 		B152496B1D2C97D60019545E /* UserCheckInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B152496A1D2C97D60019545E /* UserCheckInfoView.m */; };
 		B1F1011C1D22090C00A1004D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F1011B1D22090C00A1004D /* main.m */; };
 		B1F101251D22090C00A1004D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F101231D22090C00A1004D /* Main.storyboard */; };
@@ -161,9 +162,9 @@
 		B1F103D41D220DC900A1004D /* HMLineLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102A31D220DC900A1004D /* HMLineLayout.m */; };
 		B1F103D51D220DC900A1004D /* OneGuideInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102A51D220DC900A1004D /* OneGuideInfoCell.m */; };
 		B1F103D61D220DC900A1004D /* OneGuideInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1F102A61D220DC900A1004D /* OneGuideInfoCell.xib */; };
-		B1F103D71D220DC900A1004D /* RelatedReadingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102A81D220DC900A1004D /* RelatedReadingTableView.m */; };
-		B1F103D81D220DC900A1004D /* RelateReadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102AA1D220DC900A1004D /* RelateReadCell.m */; };
-		B1F103D91D220DC900A1004D /* RelateReadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1F102AB1D220DC900A1004D /* RelateReadCell.xib */; };
+		B1F103D71D220DC900A1004D /* RecommendReadingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102A81D220DC900A1004D /* RecommendReadingTableView.m */; };
+		B1F103D81D220DC900A1004D /* RecommendReadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102AA1D220DC900A1004D /* RecommendReadCell.m */; };
+		B1F103D91D220DC900A1004D /* RecommendReadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1F102AB1D220DC900A1004D /* RecommendReadCell.xib */; };
 		B1F103DA1D220DC900A1004D /* SelectBabyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102AD1D220DC900A1004D /* SelectBabyCell.m */; };
 		B1F103DB1D220DC900A1004D /* SelectBabyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1F102AE1D220DC900A1004D /* SelectBabyCell.xib */; };
 		B1F103DC1D220DC900A1004D /* SelectBabyView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102B01D220DC900A1004D /* SelectBabyView.m */; };
@@ -267,6 +268,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41E02F401D2F94ED00D7490A /* UserInfoChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoChangeModel.h; sourceTree = "<group>"; };
+		41E02F411D2F94ED00D7490A /* UserInfoChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoChangeModel.m; sourceTree = "<group>"; };
 		62315CB8FBE9F148F9896A03 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		773254561196709EECC94940 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B15249691D2C97D60019545E /* UserCheckInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCheckInfoView.h; sourceTree = "<group>"; };
@@ -573,11 +576,11 @@
 		B1F102A41D220DC900A1004D /* OneGuideInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneGuideInfoCell.h; sourceTree = "<group>"; };
 		B1F102A51D220DC900A1004D /* OneGuideInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneGuideInfoCell.m; sourceTree = "<group>"; };
 		B1F102A61D220DC900A1004D /* OneGuideInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneGuideInfoCell.xib; sourceTree = "<group>"; };
-		B1F102A71D220DC900A1004D /* RelatedReadingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelatedReadingTableView.h; sourceTree = "<group>"; };
-		B1F102A81D220DC900A1004D /* RelatedReadingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelatedReadingTableView.m; sourceTree = "<group>"; };
-		B1F102A91D220DC900A1004D /* RelateReadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelateReadCell.h; sourceTree = "<group>"; };
-		B1F102AA1D220DC900A1004D /* RelateReadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelateReadCell.m; sourceTree = "<group>"; };
-		B1F102AB1D220DC900A1004D /* RelateReadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelateReadCell.xib; sourceTree = "<group>"; };
+		B1F102A71D220DC900A1004D /* RecommendReadingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendReadingTableView.h; sourceTree = "<group>"; };
+		B1F102A81D220DC900A1004D /* RecommendReadingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendReadingTableView.m; sourceTree = "<group>"; };
+		B1F102A91D220DC900A1004D /* RecommendReadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendReadCell.h; sourceTree = "<group>"; };
+		B1F102AA1D220DC900A1004D /* RecommendReadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendReadCell.m; sourceTree = "<group>"; };
+		B1F102AB1D220DC900A1004D /* RecommendReadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendReadCell.xib; sourceTree = "<group>"; };
 		B1F102AC1D220DC900A1004D /* SelectBabyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectBabyCell.h; sourceTree = "<group>"; };
 		B1F102AD1D220DC900A1004D /* SelectBabyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectBabyCell.m; sourceTree = "<group>"; };
 		B1F102AE1D220DC900A1004D /* SelectBabyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectBabyCell.xib; sourceTree = "<group>"; };
@@ -1536,6 +1539,8 @@
 				B1F102911D220DC900A1004D /* HeightAndWeightModel.m */,
 				B1F102921D220DC900A1004D /* HeightAndWeightRange.h */,
 				B1F102931D220DC900A1004D /* HeightAndWeightRange.m */,
+				41E02F401D2F94ED00D7490A /* UserInfoChangeModel.h */,
+				41E02F411D2F94ED00D7490A /* UserInfoChangeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1570,11 +1575,11 @@
 				B1F102B61D220DC900A1004D /* TwoGuideInfoCell.h */,
 				B1F102B71D220DC900A1004D /* TwoGuideInfoCell.m */,
 				B1F102B81D220DC900A1004D /* TwoGuideInfoCell.xib */,
-				B1F102A71D220DC900A1004D /* RelatedReadingTableView.h */,
-				B1F102A81D220DC900A1004D /* RelatedReadingTableView.m */,
-				B1F102A91D220DC900A1004D /* RelateReadCell.h */,
-				B1F102AA1D220DC900A1004D /* RelateReadCell.m */,
-				B1F102AB1D220DC900A1004D /* RelateReadCell.xib */,
+				B1F102A71D220DC900A1004D /* RecommendReadingTableView.h */,
+				B1F102A81D220DC900A1004D /* RecommendReadingTableView.m */,
+				B1F102A91D220DC900A1004D /* RecommendReadCell.h */,
+				B1F102AA1D220DC900A1004D /* RecommendReadCell.m */,
+				B1F102AB1D220DC900A1004D /* RecommendReadCell.xib */,
 				B1F102AC1D220DC900A1004D /* SelectBabyCell.h */,
 				B1F102AD1D220DC900A1004D /* SelectBabyCell.m */,
 				B1F102AE1D220DC900A1004D /* SelectBabyCell.xib */,
@@ -1951,6 +1956,7 @@
 				TargetAttributes = {
 					B1F101161D22090C00A1004D = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 5WPF2T694R;
 					};
 					B1F1012F1D22090C00A1004D = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1989,7 +1995,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1F103F51D220DC900A1004D /* HP_BWorkItemCell.xib in Resources */,
-				B1F103D91D220DC900A1004D /* RelateReadCell.xib in Resources */,
+				B1F103D91D220DC900A1004D /* RecommendReadCell.xib in Resources */,
 				B1F103781D220DC900A1004D /* UMSocialLocalizable.strings in Resources */,
 				B1F1036E1D220DC900A1004D /* IQKeyboardManager.bundle in Resources */,
 				B1F103E11D220DC900A1004D /* TwoGuideInfoCell.xib in Resources */,
@@ -2244,7 +2250,7 @@
 				B1F104061D220DC900A1004D /* ChangePhoneController.m in Sources */,
 				B1F103FF1D220DC900A1004D /* SetDueDateViewController.m in Sources */,
 				B1F103ED1D220DC900A1004D /* Network_ParentingClass.m in Sources */,
-				B1F103D81D220DC900A1004D /* RelateReadCell.m in Sources */,
+				B1F103D81D220DC900A1004D /* RecommendReadCell.m in Sources */,
 				B1F1039B1D220DC900A1004D /* UIView+XIB.m in Sources */,
 				B1F103E71D220DC900A1004D /* WKHTMLViewController.m in Sources */,
 				B1F103651D220DC900A1004D /* IQUIWindow+Hierarchy.m in Sources */,
@@ -2258,7 +2264,7 @@
 				B1F103BB1D220DC900A1004D /* Network_Discover.m in Sources */,
 				B1F103601D220DC900A1004D /* UIImage+SDImageCacheExtension.m in Sources */,
 				B1F1036D1D220DC900A1004D /* IQUIView+IQKeyboardToolbar.m in Sources */,
-				B1F103D71D220DC900A1004D /* RelatedReadingTableView.m in Sources */,
+				B1F103D71D220DC900A1004D /* RecommendReadingTableView.m in Sources */,
 				B1F103E31D220DC900A1004D /* WaterWavesView.m in Sources */,
 				B1F103C41D220DC900A1004D /* XMButton.m in Sources */,
 				B1F1011C1D22090C00A1004D /* main.m in Sources */,
@@ -2267,6 +2273,7 @@
 				B1F103C11D220DC900A1004D /* WikiBottomScrollBtnView.m in Sources */,
 				B1F103D01D220DC900A1004D /* BillboardView.m in Sources */,
 				B1F103981D220DC900A1004D /* UITableViewCell+Util.m in Sources */,
+				41E02F421D2F94ED00D7490A /* UserInfoChangeModel.m in Sources */,
 				B1F103E61D220DC900A1004D /* ReportCardViewController.m in Sources */,
 				B1F1036B1D220DC900A1004D /* IQTitleBarButtonItem.m in Sources */,
 				B1F103CA1D220DC900A1004D /* CategoriesModel.m in Sources */,
@@ -2420,6 +2427,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MomBabyUserProject/Third/BaiduMap_IOSSDK_v3.0.0_Lib",
@@ -2439,6 +2448,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = luoye.MomBabyUserProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2448,6 +2458,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MomBabyUserProject/Third/BaiduMap_IOSSDK_v3.0.0_Lib",
@@ -2467,6 +2479,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = luoye.MomBabyUserProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

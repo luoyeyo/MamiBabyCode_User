@@ -12,8 +12,9 @@ typedef NS_ENUM(NSInteger, kHttpReturnCode)
     kHttpReturnCodeTokenFailure = 4002,             // token失效
     kHttpReturnCodeNoData = 4097,             // 数据不存在
     kHttpReturnCodeErrorNotLogin = -5,      // 未登录
-    kHttpReturnCodeErrorNet = 404,           // 网络连接失败,
-    kHttpReturnCodeErrorNetFailed = -1011,           // 网络连接失败,
+    kHttpReturnCodeErrorNet = 404,           // 网络连接失败
+    kHttpReturnCodeErrorNetFailed = -1011,           // 网络连接失败
+    kHttpReturnCodeErrorTimeOut = -1001,           // 超时
 };
 
 // 工作台 分组id

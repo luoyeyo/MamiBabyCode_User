@@ -9,5 +9,7 @@
 #import "ViewController.h"
 
 @interface GuideInfoViewController : ViewController
+// 当前阅读的文章
+@property (nonatomic, strong) DiscoverModel *currentArticle;
 
 @end

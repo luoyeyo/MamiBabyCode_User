@@ -6,11 +6,11 @@
 //  Copyright © 2016年 luo. All rights reserved.
 //
 
-#import "RelatedReadingTableView.h"
-#import "RelateReadCell.h"
+#import "RecommendReadingTableView.h"
+#import "RecommendReadCell.h"
 #import "OneGuideInfoCell.h"
 
-@implementation RelatedReadingTableView
+@implementation RecommendReadingTableView
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     self = [super initWithFrame:frame style:style];
@@ -18,12 +18,13 @@
         self.delegate = self;
         self.dataSource = self;
         self.scrollEnabled = NO;
+        self.list = [NSMutableArray array];
     }
     return self;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return self.list.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -43,9 +44,11 @@
         cell.tagImage.hidden = YES;
         cell.titleImage.image = ImageNamed(@"page3_icon_read");
         cell.title.text = @"相关阅读";
+        cell.recommendModel = self.list[indexPath.row];
         return cell;
     }
-    RelateReadCell *cell = [RelateReadCell defaultClassNameNibView];
+    RecommendReadCell *cell = [RecommendReadCell defaultClassNameNibView];
+    cell.model = self.list[indexPath.row];
     return cell;
 }
 
@@ -57,7 +60,10 @@
 }
 
 - (CGFloat)tableHeight {
-    return 120 + 90;
+    if (self.list.count > 0) {
+        return 120 + (self.list.count - 1) * 90;
+    }
+    return 0;
 }
 
 @end

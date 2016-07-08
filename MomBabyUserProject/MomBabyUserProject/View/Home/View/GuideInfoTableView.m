@@ -64,7 +64,11 @@
         if (kShareManager_Home.homeInfo.highRiskArticle != nil && indexPath.section == 0) {
             cell.model = kShareManager_Home.homeInfo.highRiskArticle;
         } else {
-            cell.model = kShareManager_Home.homeInfo.list[indexPath.section - 1];
+            NSInteger index = indexPath.section - 1;
+            if (kShareManager_Home.homeInfo.highRiskArticle == nil) {
+                index = indexPath.section;
+            }
+            cell.model = kShareManager_Home.homeInfo.list[index];
         }
         return cell;
     }

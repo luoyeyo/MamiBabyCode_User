@@ -11,3 +11,7 @@
 @implementation ArticleDetailsModel
 
 @end
+
+@implementation ArticleListModel
+
+@end

@@ -184,6 +184,9 @@
         [mineInfocell.avatar sd_setImageWithURL:[NSURL URLWithString:kUserInfo.avatar.medium] placeholderImage:kDefalutAvatar];
     }
     mineInfocell.name.text = kUserInfo.nickname;
+    if (!kUserInfo.isLogined) {
+        mineInfocell.name.text = @"游客用户";
+    }
 }
 
 - (UILabel *)logout {

@@ -15,13 +15,14 @@
 #import "SelfViewController.h"
 #import "BillboardView.h"
 #import "UserCheckInfoView.h"
+#import "GuideInfoViewController.h"
 
 @interface HomeViewController ()<UIScrollViewDelegate,TimeLineDidChangeDelegate> {
     Input_params *_params;
 }
-// 顶部背景图的高度约束
+// 顶部背景图的高度约束 (做拉伸动画效果)
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *imageHight;
-// 顶部背景图距离top约束
+// 顶部背景图距离top约束 (做拉伸动画效果)
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *imageTopLayout;
 // 今天按钮
 @property (strong, nonatomic) IBOutlet UIButton *todayBtn;
@@ -43,7 +44,6 @@
 #pragma mark - 中间
 // 中间的view
 @property (strong, nonatomic) IBOutlet UserCheckInfoView *middleBaseView;
-
 // 整个底层view的高度约束
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *baseViewHeight;
 // 显示用户的3条数据
@@ -87,6 +87,11 @@
     UITapGestureRecognizer *tag = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jumpToChangeUserInfoVC)];
     [self.avatarView addGestureRecognizer:tag];
     self.avatarView.userInteractionEnabled = YES;
+    
+    if (!kUserInfo.isLogined) {
+        self.guideInfoTab.y = self.imageHight.constant + 5;
+        self.middleBaseView.hidden = YES;
+    }
 }
 
 - (void)initializeDataSource {
@@ -260,17 +265,18 @@
         WS(weakself);
         [_guideInfoTab setSelectCellBlock:^(NSInteger index){
             // 如果有高危列表
+            GuideInfoViewController *vc = [weakself.storyboard instantiateViewControllerWithIdentifier:@"GuideInfoViewController"];
             if (kShareManager_Home.homeInfo.highRiskArticle != nil) {
                 // 点击高危
                 if (index == 0) {
-                    kShareManager_Home.currentArticleId = kShareManager_Home.homeInfo.highRiskArticle;
+                    vc.currentArticle = kShareManager_Home.homeInfo.highRiskArticle;
                 } else {
-                    kShareManager_Home.currentArticleId = kShareManager_Home.homeInfo.list[index - 1];
+                    vc.currentArticle = kShareManager_Home.homeInfo.list[index - 1];
                 }
             } else {
-                kShareManager_Home.currentArticleId = kShareManager_Home.homeInfo.list[index];
+                vc.currentArticle = kShareManager_Home.homeInfo.list[index];
             }
-            [weakself performSegueWithIdentifier:@"GuideInfoViewController" sender:weakself];
+            [weakself pushViewController:vc];
         }];
     }
     return _guideInfoTab;
