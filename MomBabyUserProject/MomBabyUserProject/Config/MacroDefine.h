@@ -30,7 +30,7 @@
 #define kGetProtocol @"http://m.stage.healthbaby.com.cn/protocal/protocal-user.html"
 #endif
 
-#define kShareUrl @"http://m.healthbaby.com.cn/download/download.html?from=ios"
+#define kShareUrl @"https://itunes.apple.com/us/app/ma-mi-baby/id1072814144?l=zh&ls=1&mt=8"
 
 // 妈咪类型时间
 #define kUserStateMomDays 293

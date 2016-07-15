@@ -23,9 +23,9 @@ static NSString *const kApiGetUserInfo = @"v1/users";
 #pragma mark - home
 
 // 首页 妈妈
-static NSString *const kApiGetHomeMumInfo = @"v2/categories/pregnancy";
+static NSString *const kApiGetHomeMumInfo = @"v1/categories/pregnancy";
 // 获取首页 宝宝
-static NSString *const kApiGetHomeBabyInfo = @"v2/categories/kid";
+static NSString *const kApiGetHomeBabyInfo = @"v1/categories/kid";
 // 获取推荐阅读
 static NSString *const kApiGetRecommendList = @"v1/related/articles";
 
