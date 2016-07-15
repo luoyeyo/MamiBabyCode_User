@@ -432,7 +432,6 @@
     NSInteger index = (10 - 4) / 2 - 1;
     // 设置控件高度
     self.collectionHeight.constant = ScreenWidth / 5 * 2 + 6 + index * 65;
-    self.baseScroll.contentSize = CGSizeMake(ScreenWidth, CGRectGetMaxY(self.workCollection.frame));
     self.baseHeight.constant = CGRectGetMaxY(self.workCollection.frame) + 10;
     [self.workCollection addLineWithColor:kColorLineGray frame:CGRectMake(ScreenWidth / 2, ScreenWidth / 5 * 2 + 6 + 6, .5,65 * index - 12)];
     
