@@ -158,7 +158,7 @@
             [self popViewController];
             break;
         case 3:
-            [ShareManager shareTitle:@"妈咪贝比" text:self.currentArticle.article.title url:_articleInfo.shareUrl];
+            [ShareManager shareTitle:@"妈咪Baby-为了更好的你" text:self.currentArticle.article.title url:_articleInfo.shareUrl];
             break;
         case 2:
             // 点赞

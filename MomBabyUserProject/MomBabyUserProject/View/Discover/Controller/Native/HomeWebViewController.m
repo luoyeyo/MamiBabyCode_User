@@ -166,7 +166,7 @@
 
 - (void)shareBtnAction {
     
-    [ShareManager shareTitle:@"妈咪贝比" text:[self.dict objectForKey:@"title"] url:[self.dict objectForKey:@"shareUrl"]];
+    [ShareManager shareTitle:@"妈咪Baby-为了更好的你" text:[self.dict objectForKey:@"title"] url:[self.dict objectForKey:@"shareUrl"]];
 }
 
 - (void)collectArticles {

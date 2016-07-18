@@ -432,8 +432,17 @@
     NSInteger index = (10 - 4) / 2 - 1;
     // 设置控件高度
     self.collectionHeight.constant = ScreenWidth / 5 * 2 + 6 + index * 65;
-    self.baseScroll.contentSize = CGSizeMake(ScreenWidth, CGRectGetMaxY(self.workCollection.frame));
-    self.baseHeight.constant = CGRectGetMaxY(self.workCollection.frame) + 10;
+    
+    // 获取layout后的frame
+    [self.workCollection setNeedsLayout];
+    [self.workCollection layoutIfNeeded];
+    
+    if (CGRectGetMaxY(self.workCollection.frame) <= ScreenHeight - 64) {
+        self.baseHeight.constant = ScreenHeight - 55;
+    } else {
+        self.baseHeight.constant = CGRectGetMaxY(self.workCollection.frame) + 20;
+    }
+    
     [self.workCollection addLineWithColor:kColorLineGray frame:CGRectMake(ScreenWidth / 2, ScreenWidth / 5 * 2 + 6 + 6, .5,65 * index - 12)];
     
     for (int i = 0; i < index; i ++) {

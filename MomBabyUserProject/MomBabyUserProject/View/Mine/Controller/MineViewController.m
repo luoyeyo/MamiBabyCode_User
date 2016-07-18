@@ -151,7 +151,7 @@
         }
     } else if (indexPath.row == 1) {
         // 要请好友
-        [ShareManager shareTitle:@"点击下载妈咪-Baby" text:@"点击下载妈咪-Baby" url:kShareUrl];
+        [ShareManager shareTitle:@"妈咪Baby-为了更好的你" text:@"国内首家专业孕婴管理APP，点击下载妈咪Baby" url:kShareUrl];
     }
 }
 
