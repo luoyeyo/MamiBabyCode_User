@@ -61,7 +61,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotiSelectThisBaby object:@(indexPath.row)];
     // 点取消 不传
     if (kUserInfo.babys.count + 1 != indexPath.row) {
         self.selectBabyBlock(indexPath.row);

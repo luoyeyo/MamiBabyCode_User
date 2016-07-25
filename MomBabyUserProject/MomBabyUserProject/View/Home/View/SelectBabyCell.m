@@ -16,13 +16,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectThisBaby:) name:kNotiSelectThisBaby object:nil];
 }
 
-- (void)selectThisBaby:(NSNotification *)noti {
-    NSNumber *index = noti.object;
+- (void)selectThisBaby {
     
-    self.selectedBtn.selected = (index.integerValue == self.row) ? YES : NO;
+    
 }
 
 - (void)setBabyInfo:(BabyInfoModel *)babyInfo {
@@ -35,6 +33,13 @@
 - (void)isMum {
     self.nameLabel.text = kUserInfo.nickname;
     self.genderIcon.image = ImageNamed(@"page2_icon_mom");
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    if (selected) {
+        self.selectedBtn.selected = selected;
+    }
 }
 
 @end

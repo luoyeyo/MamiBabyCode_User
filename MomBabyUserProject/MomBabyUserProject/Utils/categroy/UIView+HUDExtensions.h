@@ -40,4 +40,8 @@ typedef NS_ENUM(NSInteger, UIViewPopupMessageType) {
 #pragma mark - ToastMessage
 - (void)showToastMessage:(NSString *)message;
 
+- (void)showWaitingDialogOnSelf;
+
+- (void)dismissWaitingDialogOnSelf;
+
 @end

@@ -73,6 +73,16 @@
     }];
 }
 
+- (void)changeUserStateWith:(kUserState)State responseBlock:(void (^)(LLError *error))responseBlock {
+    [self put:kApiChangeUserState params:@{@"status":@(State)} additionalHeader:nil response:^(LLError *error, id responseData) {
+        if (error) {
+            responseBlock(error);
+        } else {
+            responseBlock(nil);
+        }
+    }];
+}
+
 //- (void)addNewBabyInfoWithBabyID:(NSString *)babyId responseBlock:(void (^)(LLError *))responseBlock {
 //    if (!babyId) {
 //        babyId = @"";

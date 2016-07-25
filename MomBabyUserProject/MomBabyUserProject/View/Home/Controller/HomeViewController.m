@@ -16,6 +16,7 @@
 #import "BillboardView.h"
 #import "UserCheckInfoView.h"
 #import "GuideInfoViewController.h"
+#import "HaveBabyViewController.h"
 
 @interface HomeViewController ()<UIScrollViewDelegate,TimeLineDidChangeDelegate> {
     Input_params *_params;
@@ -101,6 +102,7 @@
     _params.limit = @100;
     self.timeLine.timeLineDidChangeDelegate = self;
     [self setUserInfo];
+//    UserInfoEntity *su = kUserInfo;
     // 判断是游客登陆还是注册用户登陆
     if (kUserInfo.isLogined) [kUserInfo updateUserInfo];
     // 获取数据
@@ -147,12 +149,10 @@
     } else {
         if (kUserInfo.status == kUserStateMum) {
             self.nameLabel.text = @"游客用户";
-            
         } else {
             self.nameLabel.text = kUserInfo.currentBaby.nickname;
         }
     }
-    [self.userInfoView updateInfo];
 }
 
 - (void)setUIContent {
@@ -161,25 +161,68 @@
     // 计算高度
     self.guideInfoTab.height = self.guideInfoTab.tableHeight;
     self.baseViewHeight.constant = CGRectGetMaxY(self.guideInfoTab.frame);
-    [self.userInfoView updateInfo];
+}
+
+- (void)checkIsDelivery {
+    if (!kUserInfo.isLogined || kUserInfo.status != kUserStateMum) {
+        return;
+    }
+    // 妈妈怀孕天数 服务器时间减去末次月经
+    GestationalWeeks *day = [NSDate calculationIntervalWeeksWithStart:kUserInfo.lastMenses.doubleValue end:kUserInfo.currentTime.doubleValue];
+    if (day.allDay.integerValue >= kUserStateMomDays && kUserInfo.delivery == 1) {
+        [self changeToBaby];
+    }
+}
+
+/**
+ *  因为妈妈分娩 改变到宝贝
+ */
+- (void)changeToBaby {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您已经分娩，妈咪baby将切换到育儿状态" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        HaveBabyViewController *haveBaby = [[HaveBabyViewController alloc] init];
+        
+        haveBaby.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:haveBaby animated:YES];
+    }];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+/**
+ *  改变用户状态
+ *
+ *  @param state
+ */
+- (void)changeUserStateWith:(kUserState)state {
+    [self.view showPopupLoading];
+    [kShareManager_Home changeUserStateWith:state responseBlock:^(LLError *error) {
+        [self.view hidePopupLoading];
+        if (error) {
+            [self.view showToastMessage:error.errormsg];
+        } else {
+            kUserInfo.status = state;
+            [kUserInfo synchronize];
+            [self setUserInfo];
+            // 时间轴刷新后 会自动选中今天  进行请求
+            [self.timeLine updateInfo];
+        }
+    }];
 }
 
 - (IBAction)showSelectBabyView:(UIButton *)sender {
     SelectBabyView *view = [SelectBabyView defaultClassNameNibViewWithFrame:kAppDelegate.window.bounds];
     WS(weakSelf);
     [view setSelectBabyBlock:^(NSInteger index) {
+        kUserState state;
         // 妈咪
         if (index == 0) {
-            kUserInfo.status = kUserStateMum;
+            state = kUserStateMum;
         } else {
-            kUserInfo.status = kUserStateChild;
-            // 去掉妈妈占的1  所以-1
+            state = kUserStateChild;
+            // 去掉妈妈占的1  所以-1    此时只存在单例  当改变状态请求完成再存本地
             kUserInfo.currentBaby = kUserInfo.babys[index - 1];
-            [kUserInfo synchronize];
         }
-        [weakSelf setUserInfo];
-        // 时间轴刷新后 会自动选中今天  进行请求
-        [weakSelf.timeLine updateInfo];
+        [weakSelf changeUserStateWith:state];
     }];
     [view show];
 }
@@ -235,28 +278,14 @@
 // timeLineDidChangedelegate
 - (void)timeLineDidChangeToDay:(CalendarDayModel *)currentDay {
     self.currentDate.text = [NSString stringWithFormat:@"%ld月%ld日",currentDay.month,currentDay.day];
-    NSString *currentTimeStr = [NSString stringWithFormat:@"%@",@([currentDay date].timeIntervalSince1970)];
-    if (kUserInfo.status == kUserStateMum) {
-        // 传入妈妈怀孕天数
-        if (kUserInfo.isLogined) {
-            // 妈妈怀孕天数
-            _params.days = [NSString stringWithFormat:@"%d",[currentTimeStr getVipNumberDay:[NSString stringWithFormat:@"%@",kUserInfo.lastMenses]]];
-        } else {
-            NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"YYYY-MM-dd"];
-            NSDate * yuChanQiDate = [dateFormatter dateFromString:kUserInfo.dueDateStr];
-            //得到末次月经
-            NSDate * moCiDate = [yuChanQiDate getMensesDate];
-            //游客  手机时间减去末次月经 得到 怀孕天数
-            _params.days = [NSString stringWithFormat:@"%d",[moCiDate getHuaiYunNumberDay]];
-        }
-    } else {
-        // 传入出生了多少天
-        GestationalWeeks *day = [NSDate calculationIntervalWeeksWithStart:kUserInfo.currentBaby.birth.doubleValue end:[currentDay date].timeIntervalSince1970];
-        _params.days = [NSString stringWithFormat:@"%@",day.allDay];
-    }
+    // 这个VIew已经计算过days
+    self.userInfoView.currentDate = [currentDay date].timeIntervalSince1970;
+    [self.userInfoView updateInfo];
+    _params.days = [NSString stringWithFormat:@"%ld",(long)self.userInfoView.days];
     [self requestUserHomeData];
 }
+
+#pragma mark - 文章列表
 
 - (GuideInfoTableView *)guideInfoTab {
     if (!_guideInfoTab) {

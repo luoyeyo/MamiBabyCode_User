@@ -23,11 +23,13 @@ static NSString *const kApiGetUserInfo = @"v1/users";
 #pragma mark - home
 
 // 首页 妈妈
-static NSString *const kApiGetHomeMumInfo = @"v1/categories/pregnancy";
+static NSString *const kApiGetHomeMumInfo = @"v2/categories/pregnancy";
 // 获取首页 宝宝
-static NSString *const kApiGetHomeBabyInfo = @"v1/categories/kid";
+static NSString *const kApiGetHomeBabyInfo = @"v2/categories/kid";
 // 获取推荐阅读
 static NSString *const kApiGetRecommendList = @"v1/related/articles";
+// 修改用户状态 在切换妈妈宝宝的时候调用
+static NSString *const kApiChangeUserState = @"v2/updateStatus";
 
 #pragma mark - message
 

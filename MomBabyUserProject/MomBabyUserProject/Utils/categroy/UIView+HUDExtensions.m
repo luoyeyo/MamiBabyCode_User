@@ -24,6 +24,7 @@ static const NSInteger kHUDToastLabelTag            = 1503261411;
 + (instancetype)loadingView;
 - (void)stopLoadingAnimation;
 - (void)startLoadingAnimation;
+
 @end
 
 @implementation HUDCustomLoadingView
@@ -408,6 +409,17 @@ static const NSInteger kHUDToastLabelTag            = 1503261411;
 //        }];
 //    }];
 //}
+
+- (void)showWaitingDialogOnSelf {
+    
+    [MBProgressHUD hideHUDForView:self animated:NO];
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+}
+
+- (void)dismissWaitingDialogOnSelf {
+    [MBProgressHUD hideHUDForView:self animated:YES];
+}
+
 
 @end
 

@@ -42,6 +42,15 @@
 - (void)getArticlesDetailsInfoWithId:(NSString *)Id responseBlock:(void (^)(LLError *error,ArticleDetailsModel *data))responseBlock;
 
 - (void)getRecommendArticlesListWithId:(NSString *)Id responseBlock:(void (^)(LLError *error,ArticleListModel *data))responseBlock;
+
+/**
+ *  修改用户状态
+ *
+ *  @param State
+ *  @param responseBlock
+ */
+- (void)changeUserStateWith:(kUserState)State responseBlock:(void (^)(LLError *error))responseBlock;
+
 //
 ///**
 // *  添加宝宝

@@ -1852,7 +1852,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rpv-Sc-K80">
-                                <rect key="frame" x="0.0" y="88" width="320" height="431"/>
+                                <rect key="frame" x="0.0" y="84" width="320" height="435"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HospitalInfoCell" rowHeight="137" id="Efm-va-aGE" customClass="HospitalInfoCell">
@@ -1992,10 +1992,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1o6-hE-Up4" firstAttribute="top" secondItem="Rpv-Sc-K80" secondAttribute="bottom" id="N7T-2c-JXM"/>
-                            <constraint firstItem="Rpv-Sc-K80" firstAttribute="leading" secondItem="Lwc-nn-MGL" secondAttribute="leading" id="X5R-kr-ADD"/>
-                            <constraint firstAttribute="trailing" secondItem="Rpv-Sc-K80" secondAttribute="trailing" id="XWH-JD-bbO"/>
-                            <constraint firstItem="Rpv-Sc-K80" firstAttribute="top" secondItem="FQS-i2-lVF" secondAttribute="bottom" constant="24" id="kKv-I6-rMo"/>
+                            <constraint firstItem="1o6-hE-Up4" firstAttribute="top" secondItem="Rpv-Sc-K80" secondAttribute="bottom" id="SCy-nc-Xag"/>
+                            <constraint firstItem="Rpv-Sc-K80" firstAttribute="leading" secondItem="Lwc-nn-MGL" secondAttribute="leading" id="fhZ-8i-Z79"/>
+                            <constraint firstItem="Rpv-Sc-K80" firstAttribute="top" secondItem="FQS-i2-lVF" secondAttribute="bottom" constant="20" id="glP-B2-iza"/>
+                            <constraint firstAttribute="trailing" secondItem="Rpv-Sc-K80" secondAttribute="trailing" id="rGS-GV-kNu"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

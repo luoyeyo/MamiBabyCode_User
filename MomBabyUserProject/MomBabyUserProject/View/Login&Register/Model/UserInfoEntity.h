@@ -24,7 +24,7 @@
 /***  用户 ID*/
 @property (nonatomic, assign) NSInteger Id;
 /***  分娩 */
-@property (nonatomic, copy) NSNumber * delivery;
+@property (nonatomic, assign) NSInteger delivery;
 /***  预产期 */
 @property (nonatomic, assign) NSTimeInterval dueDate;
 /***  预产期字符串  未登陆用户用 */

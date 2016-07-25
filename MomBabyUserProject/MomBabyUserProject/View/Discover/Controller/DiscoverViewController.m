@@ -19,6 +19,8 @@
 
 @interface DiscoverViewController ()<UITableViewDelegate,UITableViewDataSource> {
     NSArray *_list;
+    // 记录当前请求时候的状态
+    kUserState _currentState;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -30,8 +32,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发现";
+    _currentState = kUserInfo.status;
     [self navbarSetAppThemeAppearance];
     [self requesrDefaultData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    // 状态切换 刷新数据
+    if (_currentState != kUserInfo.status) {
+        [self requesrDefaultData];
+        _currentState = kUserInfo.status;
+    }
 }
 
 - (void)requesrDefaultData {

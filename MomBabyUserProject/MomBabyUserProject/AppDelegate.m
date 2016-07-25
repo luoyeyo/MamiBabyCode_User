@@ -186,6 +186,7 @@
                          stringByReplacingOccurrencesOfString:@">" withString:@""]
                         stringByReplacingOccurrencesOfString:@" " withString:@""];
     [self registerPush_DeviceToken:deviceToken];
+    
     //注册设备
     [UserDefaults setPushDeviceToken:deviceTokenStr];
 }

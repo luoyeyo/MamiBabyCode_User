@@ -79,11 +79,9 @@
     if (moreHeaders) {
         NSString * Authorization = [moreHeaders objectForKey:@"Authorization"];
         newHeaders = @{@"OS_Version":OS_Version,@"Platform":Platform,@"Authorization":Authorization,@"VersionNum":VersionNum};
-    }
-    else{
+    } else {
         newHeaders = @{@"OS_Version":OS_Version,@"Platform":Platform,@"VersionNum":VersionNum};
     }
-    
     NSURLSessionConfiguration *config = [self configSessionConfiguration:newHeaders];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseUrl sessionConfiguration:config];
     return manager;

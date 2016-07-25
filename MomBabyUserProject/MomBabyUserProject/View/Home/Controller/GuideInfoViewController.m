@@ -52,7 +52,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    if ([[self.navigationController.viewControllers objectAtIndex:0] isEqual:self]) {
+    if ([self.navigationController.viewControllers indexOfObject:self] == 0) {
         // 是主文章（第一篇 和主页的数据是绑定的 之后的页面没有关联）告诉首页 去刷新各个数据的点赞
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotiUpdateLikeCountData object:nil];
     }
@@ -71,6 +71,8 @@
             [self.view showToastMessage:error.errormsg];
         } else {
             _articleInfo = data;
+            // 同步likecount
+            self.currentArticle.likeCount = _articleInfo.likeCount;
             [self setUIContent];
         }
     }];

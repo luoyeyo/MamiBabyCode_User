@@ -669,12 +669,12 @@
 		B1F1030D1D220DC900A1004D /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		B1F1030E1D220DC900A1004D /* ModifyMyInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyMyInfoController.h; sourceTree = "<group>"; };
 		B1F1030F1D220DC900A1004D /* ModifyMyInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyMyInfoController.m; sourceTree = "<group>"; };
-		B1F103101D220DC900A1004D /* MyFavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyFavouriteViewController.h; path = ../MyFavouriteViewController.h; sourceTree = "<group>"; };
-		B1F103111D220DC900A1004D /* MyFavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyFavouriteViewController.m; path = ../MyFavouriteViewController.m; sourceTree = "<group>"; };
-		B1F103121D220DC900A1004D /* MyStateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyStateViewController.h; path = ../MyStateViewController.h; sourceTree = "<group>"; };
-		B1F103131D220DC900A1004D /* MyStateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyStateViewController.m; path = ../MyStateViewController.m; sourceTree = "<group>"; };
-		B1F103151D220DC900A1004D /* SelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelfViewController.h; path = ../SelfViewController.h; sourceTree = "<group>"; };
-		B1F103161D220DC900A1004D /* SelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelfViewController.m; path = ../SelfViewController.m; sourceTree = "<group>"; };
+		B1F103101D220DC900A1004D /* MyFavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFavouriteViewController.h; sourceTree = "<group>"; };
+		B1F103111D220DC900A1004D /* MyFavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFavouriteViewController.m; sourceTree = "<group>"; };
+		B1F103121D220DC900A1004D /* MyStateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStateViewController.h; sourceTree = "<group>"; };
+		B1F103131D220DC900A1004D /* MyStateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyStateViewController.m; sourceTree = "<group>"; };
+		B1F103151D220DC900A1004D /* SelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfViewController.h; sourceTree = "<group>"; };
+		B1F103161D220DC900A1004D /* SelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfViewController.m; sourceTree = "<group>"; };
 		B1F103171D220DC900A1004D /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		B1F103181D220DC900A1004D /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		B1F1031B1D220DC900A1004D /* Network_Mine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network_Mine.h; sourceTree = "<group>"; };
@@ -1765,14 +1765,6 @@
 				B1F1030F1D220DC900A1004D /* ModifyMyInfoController.m */,
 				B1F103171D220DC900A1004D /* SettingViewController.h */,
 				B1F103181D220DC900A1004D /* SettingViewController.m */,
-				B1F103141D220DC900A1004D /* Native */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B1F103141D220DC900A1004D /* Native */ = {
-			isa = PBXGroup;
-			children = (
 				B1F103101D220DC900A1004D /* MyFavouriteViewController.h */,
 				B1F103111D220DC900A1004D /* MyFavouriteViewController.m */,
 				B1F103121D220DC900A1004D /* MyStateViewController.h */,
@@ -1780,7 +1772,7 @@
 				B1F103151D220DC900A1004D /* SelfViewController.h */,
 				B1F103161D220DC900A1004D /* SelfViewController.m */,
 			);
-			path = Native;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		B1F103191D220DC900A1004D /* Model */ = {
@@ -2446,7 +2438,7 @@
 					"$(PROJECT_DIR)/MomBabyUserProject/Third/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/MomBabyUserProject/Third/XGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = luoye.MomBabyUserProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyms.MommyBabyusers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -2477,7 +2469,7 @@
 					"$(PROJECT_DIR)/MomBabyUserProject/Third/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/MomBabyUserProject/Third/XGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = luoye.MomBabyUserProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyms.MommyBabyusers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

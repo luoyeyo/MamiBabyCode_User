@@ -182,9 +182,7 @@ alpha:1.0f]
 // appkey
 
 #define AppKey_UMeng @"56d020a467e58efe9a000f68"
-#define AppKey_JPush @"e3e9f9d33c13abc3f38db26e"
-#define AppID_XGPush 2200180086
-#define AppKey_XGPush @"I6A46FZT6N4Y"
+#define AppKey_JPush @"7f6970713b9ec5e379a54578"
 #define AppKey_AppStore @""
 #define AppKey_WX @"wxf722f07869b50708"
 #define AppKey_QQ @"61PRDDl4puWeNoPb"

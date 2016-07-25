@@ -84,9 +84,9 @@
     Input_params *params = [[Input_params alloc] init];
     params.phone = self.phoneTF.text;
     params.code = self.verifyTF.text;
-    [[[Network_Login alloc] init] loginWithParams:params responseBlock:^(LLError *error) {
+    [[[Network_Login alloc] init] loginWithParams:params responseBlock:^(LLError *error,NSString *token) {
         if (!error) {
-            [self getUserInfo];
+            [self getUserInfoWithToken:token];
         } else {
             [self.view showToastMessage:error.errormsg];
             [self.view hidePopupLoading];
@@ -97,8 +97,8 @@
 /**
  *  获取用户信息
  */
-- (void)getUserInfo {
-    [[[Network_Login alloc] init] getUserInfoWithToken:kUserInfo.token responseBlock:^(LLError *error) {
+- (void)getUserInfoWithToken:(NSString *)token {
+    [[[Network_Login alloc] init] getUserInfoWithToken:token responseBlock:^(LLError *error) {
         [self.view hidePopupLoading];
         if (!error) {
             [self.view showPopupOKMessage:@"注册成功，立即登录"];

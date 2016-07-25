@@ -111,9 +111,9 @@
     params.phone = self.phoneTF.text;
     params.code = self.verifyTF.text;
 //    params.password = self.verifyTF.text;
-    [[[Network_Login alloc] init] loginWithParams:params responseBlock:^(LLError *error) {
+    [[[Network_Login alloc] init] loginWithParams:params responseBlock:^(LLError *error,NSString *token) {
         if (!error) {
-            [self getUserInfo];
+            [self getUserInfoWithToken:token];
         } else {
             [self.view showToastMessage:error.errormsg];
             [self.view hidePopupLoading];
@@ -124,13 +124,13 @@
 /**
  *  获取用户信息
  */
-- (void)getUserInfo {
-    [[[Network_Login alloc] init] getUserInfoWithToken:kUserInfo.token responseBlock:^(LLError *error) {
+- (void)getUserInfoWithToken:(NSString *)token {
+    [[[Network_Login alloc] init] getUserInfoWithToken:token responseBlock:^(LLError *error) {
         [self.view hidePopupLoading];
         if (!error) {
             [self.view showPopupOKMessage:@"登录成功"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self loginSuccess];
+                [self loginSuccessed];
             });
         } else {
             // 防止登陆时获取到token
@@ -147,8 +147,8 @@
     }
 }
 
-- (void)loginSuccess {
-    
+- (void)loginSuccessed {
+    // 如果是没登录进来的  因为登录框是present的 所以需要先消失
     if ([kAppDelegate.window.rootViewController isEqual:kAppDelegate.homeTab]) {
         [self dismissViewControllerAnimated:YES completion:^{
             [self changeRoot];
@@ -157,11 +157,10 @@
         [self changeRoot];
     }
     
-    
     // 创建用户数据库
 //    [DataManager createDefaultTable];
-//    NSString *userId = [NSString stringWithFormat:@"yimiaoer%@",kUserInfo.phone];
-//    [JPUSHService setTags:nil alias:userId callbackSelector:nil object:nil];
+    NSString *userId = [NSString stringWithFormat:@"member-%ld",(long)kUserInfo.Id];
+    [JPUSHService setTags:nil alias:userId callbackSelector:nil object:nil];
 }
 
 - (void)changeRoot {

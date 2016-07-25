@@ -32,18 +32,19 @@
     self.navTitle.text = @"医院列表";
     self.tableView.tableFooterView = [UIView new];
     self.tableView.tableHeaderView = self.searchBar;
+    [self.tableView setNeedsLayout];
+    [self.tableView layoutIfNeeded];
+    self.tableView.frame = self.view.bounds;
     
     _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(requestDefaultList)];
     _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(requestData)];
     _requestDefault = NO;
     [self initDataSource];
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.tableView.contentOffset = CGPointMake(0, 40);
+    self.tableView.contentOffset = CGPointMake(0, 44);
 }
 
 - (void)initDataSource {

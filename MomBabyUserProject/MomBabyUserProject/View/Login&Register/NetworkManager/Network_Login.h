@@ -16,7 +16,7 @@
  *  @param params
  *  @param responseBlock  
  */
-- (void)loginWithParams:(Input_params *)params responseBlock:(void (^)(LLError *error))responseBlock;
+- (void)loginWithParams:(Input_params *)params responseBlock:(void (^)(LLError *error,NSString *token))responseBlock;
 
 - (void)getUserInfoWithToken:(NSString *)token responseBlock:(void (^)(LLError *error))responseBlock;
 

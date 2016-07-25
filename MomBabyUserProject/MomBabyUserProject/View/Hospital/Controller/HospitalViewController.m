@@ -68,6 +68,7 @@
 
 // 下方放图标的
 @property (strong, nonatomic) IBOutlet UICollectionView *workCollection;
+
 - (IBAction)lookDoctorInfo:(UIButton *)sender;
 
 @end
@@ -77,19 +78,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //判断是游客登陆还是注册用户登陆 (这里主要为了 区分用户的状态 分辨显示儿童还是妈妈)
-    if (kUserInfo.isLogined) { // 注册
-        _currentState = kUserInfo.status;
-    } else { // 游客
-        if (![NSString isEmptyString:kUserInfo.dueDateStr]) { // 孕期
-            _currentState = kUserStateMum;
-        } else { // 儿童
-            _currentState = kUserStateChild;
-        }
+    [self initData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBar.translucent = YES;
+    // 因为首页能切换状态  所以每次进来看一下状态是否改变 是否需要刷新数据
+    if (_currentState != kUserInfo.status) {
+        [self initData];
     }
+}
+
+/**
+ *  初始化数据
+ */
+- (void)initData {
+    //判断是游客登陆还是注册用户登陆 (这里主要为了 区分用户的状态 分辨显示儿童还是妈妈)
+    _currentState = kUserInfo.status;
     // 如果已经传入了医院信息  就获取这家医院的信息（只有未建档的医院才会出现这个）
     if (self.hospitalInfo) {
-//        self.navTitle.text = self.hospitalInfo.title;
+        //        self.navTitle.text = self.hospitalInfo.title;
         [self defaultConfig];
         [self getHospitalDetailsInfoWith:[NSString stringWithFormat:@"%ld",(long)self.hospitalInfo.Id]];
         [self isHaveFiles:self.hospitalInfo.isBookbuilding];
@@ -103,11 +112,6 @@
     } else {
         [self notHaveHospitalId];
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    self.navigationController.navigationBar.translucent = YES;
 }
 
 #pragma mark - data source

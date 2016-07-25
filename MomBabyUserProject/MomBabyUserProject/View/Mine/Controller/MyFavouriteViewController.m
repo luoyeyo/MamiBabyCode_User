@@ -9,6 +9,7 @@
 #import "MyFavouriteViewController.h"
 #import "HomeWebViewController.h"
 #import "RecoverTableViewCell.h"
+#import "GuideInfoViewController.h"
 
 @interface MyFavouriteViewController () <UITableViewDataSource,UITableViewDelegate>
 {
@@ -227,15 +228,25 @@
     if ([self.rightBtn.titleLabel.text isEqualToString:@"取消"]) {
         [self.removeDic setObject:indexPath forKey:[[self.dataArr objectAtIndex:indexPath.row] objectForKey:@"id"]];
         //添加
-    }
-    else{
+    } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-        HomeWebViewController * homeWeb = [[HomeWebViewController alloc] init];
-        homeWeb.title = [[self.dataArr objectAtIndex:indexPath.row] objectForKey:@"title"];
-        homeWeb.articleTitle = [[self.dataArr objectAtIndex:indexPath.row] objectForKey:@"title"];
-        homeWeb.articleId = [[self.dataArr objectAtIndex:indexPath.row] objectForKey:@"id"];
-        [self.navigationController pushViewController:homeWeb animated:YES];
+//        HomeWebViewController * homeWeb = [[HomeWebViewController alloc] init];
+//        homeWeb.title = [[self.dataArr objectAtIndex:indexPath.row] objectForKey:@"title"];
+//        homeWeb.articleTitle = [[self.dataArr objectAtIndex:indexPath.row] objectForKey:@"title"];
+//        homeWeb.articleId = [[self.dataArr objectAtIndex:indexPath.row] objectForKey:@"id"];
+//        [self.navigationController pushViewController:homeWeb animated:YES];
+        
+        DiscoverModel *current = [DiscoverModel new];
+        DiscoverModel *article = [DiscoverModel new];
+        article.title = [[self.dataArr objectAtIndex:indexPath.row] objectForKey:@"title"];
+        current.title = [[self.dataArr objectAtIndex:indexPath.row] objectForKey:@"title"];
+        article.Id = [[self.dataArr objectAtIndex:indexPath.row] objectForKey:@"id"];
+        current.article = article;
+        // 如果有高危列表
+        GuideInfoViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"GuideInfoViewController"];
+        vc.currentArticle = current;
+        [self pushViewController:vc];
     }
 }
 
