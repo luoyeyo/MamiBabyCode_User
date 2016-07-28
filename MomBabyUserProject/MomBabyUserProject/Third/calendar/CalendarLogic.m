@@ -27,7 +27,7 @@
 - (NSMutableArray *)reloadCalendarView:(NSDate *)date  selectDate:(NSDate *)selectdate needDays:(NSUInteger)days_number
 {
     //如果为空就从当天的日期开始
-    if(date == nil){
+    if(date == nil) {
         date = [NSDate date];
     }
     
@@ -42,9 +42,9 @@
     
     select = selectdate;//选择的日期
     
-    NSDateComponents *todayDC= [today YMDComponents];
+    NSDateComponents *todayDC = [today YMDComponents];
     
-    NSDateComponents *beforeDC= [before YMDComponents];
+    NSDateComponents *beforeDC = [before YMDComponents];
     
     NSInteger todayYear = todayDC.year;
     
@@ -54,7 +54,7 @@
     
     NSInteger beforeMonth = beforeDC.month;
     
-    NSInteger months = (beforeYear-todayYear) * 12 + (beforeMonth - todayMonth);
+    NSInteger months = (beforeYear - todayYear) * 12 + (beforeMonth - todayMonth);
     
     NSMutableArray *calendarMonth = [[NSMutableArray alloc] init];//每个月的dayModel数组
 //    self.totalDay = 0;
@@ -63,18 +63,29 @@
         
         NSDate *month = [today dayInTheFollowingMonth:i];
         NSMutableArray *calendarDays = [[NSMutableArray alloc] init];
-        [self calculateDaysInPreviousMonthWithDate:month andArray:calendarDays];
+//        [self calculateDaysInPreviousMonthWithDate:month andArray:calendarDays];
         [self calculateDaysInCurrentMonthWithDate:month andArray:calendarDays];
-        [self calculateDaysInFollowingMonthWithDate:month andArray:calendarDays];//计算下月份的天数
-        
+        // 在第一次添加时  会添加起始日之前的日期  需要删除
+        if (i == 0) {
+            [calendarDays removeObjectsInRange:NSMakeRange(0, todayDC.day - 1)];
+            self.todayIndex -= todayDC.day - 1;
+        }
+//        [self calculateDaysInFollowingMonthWithDate:month andArray:calendarDays];
+        //计算下月份的天数
         //        [self calculateDaysIsWeekendandArray:calendarDays];
-//        self.totalDay += calendarDays.count;
-//        [calendarMonth insertObject:calendarDays atIndex:i];
         if (_haveSelect) {
             self.todayIndex += calendarMonth.count;
             _haveSelect = NO;
         }
         [calendarMonth addObjectsFromArray:calendarDays];
+        // 如果达到了限度  就不再添加
+        if (calendarMonth.count >= days_number) {
+            if (calendarMonth.count > days_number) {
+                // 超出限制的范围就截取掉
+                [calendarMonth removeObjectsInRange:NSMakeRange(days_number, calendarMonth.count - days_number)];
+            }
+            break;
+        }
     }
     
     return calendarMonth;

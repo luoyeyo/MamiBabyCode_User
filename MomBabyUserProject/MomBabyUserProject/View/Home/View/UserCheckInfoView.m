@@ -10,14 +10,6 @@
 
 @implementation UserCheckInfoView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 - (void)updateCheckInfo {
     NSString *type;
     if (kUserInfo.status == kUserStateMum) {
@@ -28,7 +20,19 @@
     self.nextCheckTime.text = [NSString stringWithFormat:@"请于%@前往医院进行%@",[NSDate dateStringWithTimeInterval:kShareManager_Home.homeInfo.nextCheckTime formatterStr:@"M月d日"],type];
     
     GestationalWeeks *week = [NSDate calculationIntervalWeeksWithStart:[NSDate date].timeIntervalSince1970 end:kShareManager_Home.homeInfo.nextCheckTime];
-    self.surplusDay.text = [NSString stringWithFormat:@"%ld",labs([week.allDay integerValue])];
+    
+    NSInteger surplusDay = labs([week.allDay integerValue]);
+    // 显示月
+    if (surplusDay > 60 && surplusDay <= 365) {
+        surplusDay = surplusDay / 7;
+        self.unit.text = @"月";
+    } else if (surplusDay > 365) {
+        surplusDay = 1;
+        self.unit.text = @"年以上";
+    } else {
+        self.unit.text = @"天";
+    }
+    self.surplusDay.text = [NSString stringWithFormat:@"%ld",surplusDay];
     if (week.allDay.integerValue < 0) {
         self.introText.text = @"您已逾期";
     }

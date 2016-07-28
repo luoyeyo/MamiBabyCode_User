@@ -36,7 +36,7 @@
 @property (nonatomic, copy) NSString *hospitalId;
 
 @property (nonatomic, copy) NSArray<DiscoverModel> *list;
-
+//
 @property (nonatomic, strong) UserInfoChangeModel *motherWeekChange;
 
 @end

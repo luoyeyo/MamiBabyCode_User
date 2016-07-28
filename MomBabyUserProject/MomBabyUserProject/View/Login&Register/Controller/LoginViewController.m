@@ -159,7 +159,7 @@
     
     // 创建用户数据库
 //    [DataManager createDefaultTable];
-    NSString *userId = [NSString stringWithFormat:@"member-%ld",(long)kUserInfo.Id];
+    NSString *userId = [NSString stringWithFormat:@"member%ld",(long)kUserInfo.Id];
     [JPUSHService setTags:nil alias:userId callbackSelector:nil object:nil];
 }
 

@@ -107,6 +107,7 @@
     if (kUserInfo.isLogined) [kUserInfo updateUserInfo];
     // 获取数据
 //    [self requestUserHomeData];
+    [self checkIsDelivery];
 }
 
 - (void)registerNotifications {
@@ -163,13 +164,16 @@
     self.baseViewHeight.constant = CGRectGetMaxY(self.guideInfoTab.frame);
 }
 
+/**
+ *  检测是否已经分娩
+ */
 - (void)checkIsDelivery {
     if (!kUserInfo.isLogined || kUserInfo.status != kUserStateMum) {
         return;
     }
     // 妈妈怀孕天数 服务器时间减去末次月经
     GestationalWeeks *day = [NSDate calculationIntervalWeeksWithStart:kUserInfo.lastMenses.doubleValue end:kUserInfo.currentTime.doubleValue];
-    if (day.allDay.integerValue >= kUserStateMomDays && kUserInfo.delivery == 1) {
+    if ((day.allDay.integerValue >= kUserStateMomDays || kUserInfo.dueDate < kUserInfo.currentTime.doubleValue) && kUserInfo.delivery == 1 && kUserInfo.currentBaby.Id.integerValue == 0) {
         [self changeToBaby];
     }
 }
@@ -181,7 +185,6 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您已经分娩，妈咪baby将切换到育儿状态" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         HaveBabyViewController *haveBaby = [[HaveBabyViewController alloc] init];
-        
         haveBaby.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:haveBaby animated:YES];
     }];
@@ -228,15 +231,16 @@
 }
 
 - (IBAction)backToToday:(UIButton *)sender {
-//    [self.timeLine today];
-    [BillboardView billboardViewWithImage:nil imageUrl:@"http://pic16.nipic.com/20110827/2127531_105629251000_2.jpg" clickBlock:nil];
-    
+    [self.timeLine today];
+//    [BillboardView billboardViewWithImage:nil imageUrl:@"http://pic16.nipic.com/20110827/2127531_105629251000_2.jpg" clickBlock:nil];
 }
 
 - (void)showMessagePage {
     MessageViewController *message = [[MessageViewController alloc] init];
     message.hidesBottomBarWhenPushed = YES;
     [self pushViewController:message];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 - (void)jumpToChangeUserInfoVC {

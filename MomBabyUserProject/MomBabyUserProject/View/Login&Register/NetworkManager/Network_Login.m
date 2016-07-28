@@ -41,7 +41,6 @@
             [UserInfoEntity syncUserInfo:data];
             responseBlock(nil);
         } else {
-            
             responseBlock(error);
         }
     }];

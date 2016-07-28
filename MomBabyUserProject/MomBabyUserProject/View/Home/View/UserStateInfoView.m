@@ -44,7 +44,7 @@
         }
         GestationalWeeks *day = [NSDate calculationIntervalWeeksWithStart:kUserInfo.lastMenses.doubleValue end:current];
         self.bottomTow.text = [NSString stringWithFormat:@"%@天",day.allDay];
-        if (day.allDay.integerValue >= kUserStateMomDays) {
+        if (day.allDay.integerValue >= kUserStateMomDays || kUserInfo.dueDate < kUserInfo.currentTime.doubleValue) {
             self.topTow.text = @"已分娩";
             self.bottomTow.text = @"-";
         }

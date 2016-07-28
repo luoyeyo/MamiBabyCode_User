@@ -12,7 +12,9 @@
 #import "NSDate+WQCalendarLogic.h"
 
 @interface CalendarLogic : NSObject
+
 @property (nonatomic, assign) NSInteger todayIndex;
+
 - (NSMutableArray *)reloadCalendarView:(NSDate *)date  selectDate:(NSDate *)date1 needDays:(NSUInteger)days_number;
 - (void)selectLogic:(CalendarDayModel *)day;
 @end

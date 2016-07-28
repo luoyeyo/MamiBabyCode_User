@@ -1047,6 +1047,7 @@
                                                     <outlet property="nextCheckTime" destination="IQ1-eY-1fs" id="pMA-aR-EdQ"/>
                                                     <outlet property="surplusDay" destination="lBz-Uz-cI9" id="gTg-ga-ni5"/>
                                                     <outlet property="title" destination="IRq-b8-Vng" id="EhK-z6-Jz2"/>
+                                                    <outlet property="unit" destination="vKN-LN-yIM" id="5VW-9N-htE"/>
                                                 </connections>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page1_userhead" translatesAutoresizingMaskIntoConstraints="NO" id="gYj-0P-BZg">

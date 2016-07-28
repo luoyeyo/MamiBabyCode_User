@@ -23,7 +23,7 @@
 @property(nonatomic, strong)PhotoModel *avatar;
 /***  用户 ID*/
 @property (nonatomic, assign) NSInteger Id;
-/***  分娩 */
+/***  分娩 1是已经分娩 */
 @property (nonatomic, assign) NSInteger delivery;
 /***  预产期 */
 @property (nonatomic, assign) NSTimeInterval dueDate;

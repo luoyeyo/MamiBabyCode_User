@@ -11,7 +11,7 @@
 #define KCWeeks @[@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六"]
 
 @interface GestationalWeeks : NSObject
-
+// 周余数天
 @property (nonatomic, copy) NSNumber *day;
 @property (nonatomic, copy) NSNumber *allDay;
 @property (nonatomic, copy) NSNumber *week;

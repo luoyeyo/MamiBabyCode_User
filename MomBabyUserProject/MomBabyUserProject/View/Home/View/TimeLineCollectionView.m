@@ -51,18 +51,27 @@
     if (kUserInfo.status == kUserStateMum) {
         allDay = kUserStateMomDays;
         date = [NSDate dateWithTimeIntervalSince1970:kUserInfo.lastMenses.doubleValue];
+        // 设置终止日期
+        if (kUserInfo.dueDate > 0) {
+            allDay = [NSDate calculationIntervalWeeksWithStart:kUserInfo.lastMenses.doubleValue end:kUserInfo.dueDate].allDay.integerValue;
+        }
     } else {
         allDay = kUserStateBabyDays;
         date = [NSDate dateWithTimeIntervalSince1970:kUserInfo.currentBaby.birth.doubleValue];
     }
     // 获取时间数组
     self.daysArray = [Logic reloadCalendarView:date selectDate:[NSDate date] needDays:allDay];
+    if (Logic.todayIndex >= allDay) {
+        Logic.todayIndex = allDay - 1;
+    }
     // 当天的index
     todayIndex = Logic.todayIndex;
     [self reloadData];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:Logic.todayIndex + 2 inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-        [self.timeLineDidChangeDelegate timeLineDidChangeToDay:self.daysArray[Logic.todayIndex]];
+//        NSInteger index = Logic.todayIndex + 0;
+//        [self scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+//        [self.timeLineDidChangeDelegate timeLineDidChangeToDay:self.daysArray[Logic.todayIndex]];
+        [self today];
     });
 }
 
