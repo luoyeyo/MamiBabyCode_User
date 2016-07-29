@@ -361,13 +361,12 @@ static const NSInteger kHUDToastLabelTag            = 1503261411;
 //    if (delay > 1) {
 //        delay = 1;
 //    }
-    UIView *showOnView = [[UIApplication sharedApplication]keyWindow];
     NSTimeInterval defaultDuration = .5;
-    MBProgressHUD *tipHUD = [[MBProgressHUD alloc] initWithView:showOnView];
+    MBProgressHUD *tipHUD = [[MBProgressHUD alloc] initWithView:self];
     tipHUD.opacity = .4f;
     tipHUD.labelText = message;
     tipHUD.mode = MBProgressHUDModeText;
-    [showOnView addSubview:tipHUD];
+    [self addSubview:tipHUD];
     [tipHUD show:YES];
     [tipHUD hide:YES afterDelay:defaultDuration];
 }
