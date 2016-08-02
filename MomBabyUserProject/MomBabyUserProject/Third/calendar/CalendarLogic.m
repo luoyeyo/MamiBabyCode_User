@@ -68,7 +68,7 @@
         // 在第一次添加时  会添加起始日之前的日期  需要删除
         if (i == 0) {
             [calendarDays removeObjectsInRange:NSMakeRange(0, todayDC.day - 1)];
-            self.todayIndex -= todayDC.day - 1;
+//            self.todayIndex -= todayDC.day - 1;
         }
 //        [self calculateDaysInFollowingMonthWithDate:month andArray:calendarDays];
         //计算下月份的天数

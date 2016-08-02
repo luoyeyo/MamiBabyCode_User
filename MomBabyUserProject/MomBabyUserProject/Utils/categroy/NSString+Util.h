@@ -94,6 +94,7 @@ static NSString *const WZDateStringFormat6 = @"yyyy-MM";
 
 - (BOOL)isPureInt;
 
+- (BOOL)ios7IsContainsString:(NSString *)str;
 
 - (BOOL)isPureNumber;
 

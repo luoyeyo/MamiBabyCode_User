@@ -196,13 +196,13 @@
     HospitalDetailsModel *details = [_data.list lastObject];
     
     // 如果有action=chanjian 就是去产检程序
-    if ([urlStr containsString:@"action=chanjian"]) {
+    if ([urlStr ios7IsContainsString:@"action=chanjian"]) {
         ReportCardViewController *report = [[ReportCardViewController alloc] init];
         report.hospitalId = [NSString stringWithFormat:@"%ld",(long)details.hospitalId];
         report.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:report animated:YES];
         return;
-    } else if ([urlStr containsString:@"action=erbao"]) {
+    } else if ([urlStr ios7IsContainsString:@"action=erbao"]) {
         ReportCardViewController *report = [[ReportCardViewController alloc] init];
         report.hospitalId = [NSString stringWithFormat:@"%ld",(long)details.hospitalId];
         report.hidesBottomBarWhenPushed = YES;

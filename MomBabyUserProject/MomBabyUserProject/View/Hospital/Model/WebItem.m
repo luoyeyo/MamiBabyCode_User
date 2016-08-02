@@ -53,7 +53,7 @@
         // 获取属性名称
         NSString *propName = [NSString stringWithUTF8String:property_getName(prop)];
         for (NSString *str in params) {
-            if ([str containsString:propName]) {
+            if ([str ios7IsContainsString:propName]) {
                 // 查询到开始位置与这段字符的长度是否在首位 不在首位就跳过 防止后面的参数也有这个字段
                 NSRange range = [str rangeOfString:propName];
                 if (range.location != 0) break;
@@ -69,7 +69,7 @@
     }
     // 拼接回参数
     for (NSString *str in params) {
-        if (![str containsString:@"labelTitle"] && ![str containsString:@"labelItemTitle"] && ![str containsString:@"labelItemUrl"]) {
+        if (![str ios7IsContainsString:@"labelTitle"] && ![str ios7IsContainsString:@"labelItemTitle"] && ![str ios7IsContainsString:@"labelItemUrl"]) {
             // 解码
             NSString *uncodeStr = [str stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [baseUrl appendString:[NSString stringWithFormat:@"%@&",uncodeStr]];

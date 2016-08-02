@@ -55,6 +55,7 @@
 @property (strong, nonatomic) IBOutlet TimeLineCollectionView *timeLine;
 
 - (IBAction)showSelectBabyView:(UIButton *)sender;
+
 @end
 
 @implementation HomeViewController
@@ -182,14 +183,13 @@
  *  因为妈妈分娩 改变到宝贝
  */
 - (void)changeToBaby {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您已经分娩，妈咪baby将切换到育儿状态" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    RIButtonItem *confim = [RIButtonItem itemWithLabel:@"确认" action:^{
         HaveBabyViewController *haveBaby = [[HaveBabyViewController alloc] init];
         haveBaby.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:haveBaby animated:YES];
     }];
-    [alert addAction:action];
-    [self presentViewController:alert animated:YES completion:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"您已经分娩，妈咪baby将切换到育儿状态" cancelButtonItem:confim otherButtonItems: nil];
+    [alert show];
 }
 /**
  *  改变用户状态
@@ -279,6 +279,7 @@
         self.imageTopLayout.constant = offset.y;
     }
 }
+
 // timeLineDidChangedelegate
 - (void)timeLineDidChangeToDay:(CalendarDayModel *)currentDay {
     self.currentDate.text = [NSString stringWithFormat:@"%ld月%ld日",currentDay.month,currentDay.day];
@@ -314,4 +315,5 @@
     }
     return _guideInfoTab;
 }
+
 @end

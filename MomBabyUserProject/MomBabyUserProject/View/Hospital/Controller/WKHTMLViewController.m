@@ -10,34 +10,30 @@
 #import <WebKit/WebKit.h>
 #import "NoResponseView.h"
 
-@interface WKHTMLViewController ()<WKNavigationDelegate,WKUIDelegate,NoResponseViewDelegate> {
-    WKWebView *_web;
-}
+@interface WKHTMLViewController ()<WKNavigationDelegate,WKUIDelegate,NoResponseViewDelegate,UIWebViewDelegate>
+
 @property (strong, nonatomic) NoResponseView *noRespon;
 @property (strong, nonatomic) UIProgressView *progressView;
+@property (strong, nonatomic) WKWebView *wkWebView;
+@property (strong, nonatomic) UIWebView *webView;
 @property (assign, nonatomic) NSUInteger loadCount;
+
 @end
 
 @implementation WKHTMLViewController
 
 - (void)dealloc {
     // 必须移除 否则会崩溃
-    [_web removeObserver:self forKeyPath:@"estimatedProgress"];
+    [_wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _web = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64)];
-    _web.UIDelegate = self;
-    [self.view addSubview:_web];
-    _web.navigationDelegate = self;
-    [_web addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
 
-    [_web showPopupLoading];
+    
     if (self.webItem) {
         self.navTitle.text = self.webItem.labelTitle;
-        if ([self.webItem.labelTitle containsString:@"儿童检查报告"]) {
+        if ([self.webItem.labelTitle ios7IsContainsString:@"儿童检查报告"]) {
             self.webItem.defaultUrl = [self.webItem.defaultUrl stringByAppendingString:@"userStatus=2"];
         }
         if (self.webItem.labelItemUrl && self.webItem.labelItemTitle) {
@@ -47,7 +43,14 @@
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.webItem.defaultUrl]];
         [self addHeader:request];
         
-        [_web loadRequest:request];
+        if (SystemVersion >= 8.0) {
+            [self.wkWebView showPopupLoading];
+            [self.wkWebView loadRequest:request];
+        } else {
+            [self.webView showPopupLoading];
+            [self.webView loadRequest:request];
+        }
+        
     }
 //    [_web loadHTMLString:nil baseURL:nil];
 //    [_web loadData:nil MIMEType:nil characterEncodingName:nil baseURL:nil];
@@ -71,7 +74,7 @@
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
     NSString *urlstr = [NSString stringWithFormat:@"%@",webView.URL.absoluteString];
     NSString *defaulturlstr = [NSString stringWithFormat:@"%@",self.webItem.defaultUrl];
-    if ([urlstr containsString:@"action=goback"]) {
+    if ([urlstr ios7IsContainsString:@"action=goback"]) {
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
@@ -112,41 +115,53 @@
 
 // 计算wkWebView进度条
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (object == _web && [keyPath isEqualToString:@"estimatedProgress"]) {
+    if (object == _wkWebView && [keyPath isEqualToString:@"estimatedProgress"]) {
         CGFloat newprogress = [[change objectForKey:NSKeyValueChangeNewKey] doubleValue];
         if (newprogress == 1) {
-//            self.progressView.hidden = YES;
-//            [self.progressView setProgress:0 animated:NO];
-            [_web hidePopupLoading];
-        }else {
-//            self.progressView.hidden = NO;
-//            [self.progressView setProgress:newprogress animated:YES];
+            [_wkWebView hidePopupLoading];
         }
     }
 }
-
+/**
+ *  再次加载
+ */
 - (void)onceAgain {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.webItem.defaultUrl]];
     [self addHeader:request];
-    [_web loadRequest:request];
+    [_wkWebView loadRequest:request];
     [self.noRespon removeFromSuperview];
+    if (SystemVersion >= 8.0) {
+        [self.wkWebView loadRequest:request];
+    } else {
+        [self.webView loadRequest:request];
+    }
 }
 
-// 计算webView进度条
-- (void)setLoadCount:(NSUInteger)loadCount {
-    _loadCount = loadCount;
-    if (loadCount == 0) {
-        self.progressView.hidden = YES;
-        [self.progressView setProgress:0 animated:NO];
-    }else {
-        self.progressView.hidden = NO;
-        CGFloat oldP = self.progressView.progress;
-        CGFloat newP = (1.0 - oldP) / (loadCount + 1) + oldP;
-        if (newP > 0.95) {
-            newP = 0.95;
-        }
-        [self.progressView setProgress:newP animated:YES];
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSString *urlstr = [NSString stringWithFormat:@"%@",request.URL.absoluteString];
+    NSString *defaulturlstr = [NSString stringWithFormat:@"%@",self.webItem.defaultUrl];
+    if ([urlstr ios7IsContainsString:@"action=goback"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return NO;
     }
+    // 如果默认的相同  不跳转
+    if ([urlstr isEqualToString:defaulturlstr]) {
+        return NO;
+    }
+    [self pushHtmlWithUrl:urlstr];
+    [webView stopLoading];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    return YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.view hidePopupLoading];
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
+    [self.view addSubview:self.noRespon];
+    [self.view hidePopupLoading];
 }
 
 - (UIProgressView *)progressView {
@@ -164,6 +179,26 @@
         _noRespon.delegate = self;
     }
     return _noRespon;
+}
+
+- (WKWebView *)wkWebView {
+    if (!_wkWebView) {
+        _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64)];
+        _wkWebView.UIDelegate = self;
+        _wkWebView.navigationDelegate = self;
+        [_wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+        [self.view addSubview:_wkWebView];
+    }
+    return _wkWebView;
+}
+
+- (UIWebView *)webView {
+    if (!_webView) {
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64)];
+        _webView.delegate = self;
+        [self.view addSubview:_webView];
+    }
+    return _webView;
 }
 
 @end

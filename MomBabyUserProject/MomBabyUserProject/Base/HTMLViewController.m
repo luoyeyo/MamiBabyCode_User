@@ -9,9 +9,10 @@
 #import "HTMLViewController.h"
 #import <WebKit/WebKit.h>
 
-@interface HTMLViewController ()<WKNavigationDelegate,WKUIDelegate>
+@interface HTMLViewController ()<WKNavigationDelegate,WKUIDelegate,UIWebViewDelegate>
 
 @property (strong, nonatomic) WKWebView *wkWeb;
+@property (strong, nonatomic) UIWebView *webView;
 
 @end
 
@@ -19,8 +20,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.wkWeb];
-    [self loadData];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]];
+    if (SystemVersion >= 8.0) {
+        [self.view addSubview:self.wkWeb];
+        [self.wkWeb loadRequest:request];
+    } else {
+        [self.view addSubview:self.webView];
+        [self.webView loadRequest:request];
+    }
+    [self.view showPopupLoading];
     self.view.backgroundColor = kColorWhite;
     [self customNavgationBar];
     self.navTitle.text = self.title;
@@ -31,11 +40,12 @@
     [super viewWillAppear:animated];
 }
 
-- (void)loadData {
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString]];
-    [self.wkWeb loadRequest:request];
-    [self.view showPopupLoading];
+- (UIWebView *)webView {
+    if (!_webView) {
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 44, ScreenWidth, ScreenHeight - 44)];
+        _webView.delegate = self;
+    }
+    return _webView;
 }
 
 - (WKWebView *)wkWeb {
@@ -69,5 +79,17 @@
     [self.view showToastMessage:@"数据加载失败"];
 }
 
+#pragma mark - UIWebViewDelegate
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [self.view showPopupLoading];
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.view hidePopupLoading];
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
+    [self.view hidePopupLoading];
+    [self.view showToastMessage:@"数据加载失败"];
+}
 
 @end

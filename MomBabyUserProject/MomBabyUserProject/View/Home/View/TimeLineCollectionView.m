@@ -61,7 +61,7 @@
     }
     // 获取时间数组
     self.daysArray = [Logic reloadCalendarView:date selectDate:[NSDate date] needDays:allDay];
-    if (Logic.todayIndex >= allDay) {
+    if (Logic.todayIndex >= allDay || Logic.todayIndex == 0) {
         Logic.todayIndex = allDay - 1;
     }
     // 当天的index

@@ -83,6 +83,11 @@
     return [mobilePredicate evaluateWithObject:self];
 }
 
+- (BOOL)ios7IsContainsString:(NSString *)str {
+    NSRange range = [self rangeOfString:str];
+    return !(range.length == 0);
+}
+
 //是否合法的中国公民身份证号
 - (BOOL)isValidPersonID {
     // 判断位数
