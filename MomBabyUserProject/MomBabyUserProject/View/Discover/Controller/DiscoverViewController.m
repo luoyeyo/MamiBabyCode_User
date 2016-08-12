@@ -60,7 +60,6 @@
             isMum = NO;
         }
     }
-    
     Input_params *params = [[Input_params alloc] init];
     params.page = @1;
     params.limit = @10;

@@ -144,15 +144,15 @@
         }
         self.selectBabyBtn.hidden = NO;
         if (kUserInfo.status == kUserStateMum) {
-            self.nameLabel.text = kUserInfo.nickname;
+            self.nameLabel.text = [NSString stringWithFormat:@"%@妈咪",kUserInfo.nickname];
         } else {
-            self.nameLabel.text = kUserInfo.currentBaby.nickname;
+            self.nameLabel.text = [NSString stringWithFormat:@"%@宝宝",kUserInfo.currentBaby.nickname];
         }
     } else {
         if (kUserInfo.status == kUserStateMum) {
             self.nameLabel.text = @"游客用户";
         } else {
-            self.nameLabel.text = kUserInfo.currentBaby.nickname;
+            self.nameLabel.text = [NSString stringWithFormat:@"%@宝宝",kUserInfo.currentBaby.nickname];
         }
     }
 }

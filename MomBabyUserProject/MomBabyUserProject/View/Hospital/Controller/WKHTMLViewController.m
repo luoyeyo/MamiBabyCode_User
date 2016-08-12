@@ -27,9 +27,9 @@
     [_wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     
     if (self.webItem) {
         self.navTitle.text = self.webItem.labelTitle;
@@ -44,29 +44,14 @@
         [self addHeader:request];
         
         if (SystemVersion >= 8.0) {
-            [self.wkWebView showPopupLoading];
             [self.wkWebView loadRequest:request];
         } else {
-            [self.webView showPopupLoading];
             [self.webView loadRequest:request];
         }
-        
+        [self.view showPopupLoading];
     }
-//    [_web loadHTMLString:nil baseURL:nil];
-//    [_web loadData:nil MIMEType:nil characterEncodingName:nil baseURL:nil];
-}
-
-- (void)clickOtherBtn {
-    [self pushHtmlWithUrl:self.webItem.labelItemUrl];
-}
-
-- (void)addHeader:(NSMutableURLRequest *)request {
-    
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];//这个很关键，一定要设置
-    [request setValue:kUserInfo.token forHTTPHeaderField:@"Authorization"];
-    [request setValue:@"ios" forHTTPHeaderField:@"Platform"];
-    [request setValue:[UIDevice currentDevice].systemVersion forHTTPHeaderField:@"Os-Version"];
-    [request setValue:[NSString stringWithFormat:@"%d",locationVersion] forHTTPHeaderField:@"VersionNum"];
+    //    [_web loadHTMLString:nil baseURL:nil];
+    //    [_web loadData:nil MIMEType:nil characterEncodingName:nil baseURL:nil];
 }
 
 #pragma mark - WKNavigationDelegate
@@ -101,6 +86,65 @@
     [self.view addSubview:self.noRespon];
 }
 
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSString *urlstr = [request.URL.absoluteString stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    NSString *defaulturlstr = [[NSString stringWithFormat:@"%@",self.webItem.defaultUrl] stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    if ([urlstr ios7IsContainsString:@"action=goback"]) {
+        [webView stopLoading];
+        [self.navigationController popViewControllerAnimated:YES];
+        return NO;
+    }
+    // 如果默认的不相同  跳转
+    if (![urlstr isEqualToString:defaulturlstr]) {
+        [self pushHtmlWithUrl:request.URL.absoluteString];
+        [webView stopLoading];
+        return NO;
+    }
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    return YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.view hidePopupLoading];
+    webView.scrollView.contentSize = CGSizeMake(ScreenWidth, webView.scrollView.contentSize.height);
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
+    if (SystemVersion >= 8.0) {
+        [self.wkWebView removeFromSuperview];
+        self.wkWebView = nil;
+    } else {
+        [self.webView removeFromSuperview];
+        self.webView = nil;
+    }
+    [self.view addSubview:self.noRespon];
+    [self.view hidePopupLoading];
+}
+
+#pragma mark - Privave Method
+/**
+ *  点击右上角其他按钮
+ */
+- (void)clickOtherBtn {
+    [self pushHtmlWithUrl:self.webItem.labelItemUrl];
+}
+
+/**
+ *  为request添加header
+ *
+ *  @param request
+ */
+- (void)addHeader:(NSMutableURLRequest *)request {
+    
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];//这个很关键，一定要设置
+    [request setValue:kUserInfo.token forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"ios" forHTTPHeaderField:@"Platform"];
+    [request setValue:[UIDevice currentDevice].systemVersion forHTTPHeaderField:@"Os-Version"];
+    [request setValue:[NSString stringWithFormat:@"%d",locationVersion] forHTTPHeaderField:@"VersionNum"];
+}
+
 - (void)pushHtmlWithUrl:(NSString *)urlStr {
     WKHTMLViewController *web = [[WKHTMLViewController alloc] init];
     // 替换医院id
@@ -128,7 +172,6 @@
 - (void)onceAgain {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.webItem.defaultUrl]];
     [self addHeader:request];
-    [_wkWebView loadRequest:request];
     [self.noRespon removeFromSuperview];
     if (SystemVersion >= 8.0) {
         [self.wkWebView loadRequest:request];
@@ -137,32 +180,7 @@
     }
 }
 
-#pragma mark - UIWebViewDelegate
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSString *urlstr = [NSString stringWithFormat:@"%@",request.URL.absoluteString];
-    NSString *defaulturlstr = [NSString stringWithFormat:@"%@",self.webItem.defaultUrl];
-    if ([urlstr ios7IsContainsString:@"action=goback"]) {
-        [self.navigationController popViewControllerAnimated:YES];
-        return NO;
-    }
-    // 如果默认的相同  不跳转
-    if ([urlstr isEqualToString:defaulturlstr]) {
-        return NO;
-    }
-    [self pushHtmlWithUrl:urlstr];
-    [webView stopLoading];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    return YES;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [self.view hidePopupLoading];
-}
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
-    [self.view addSubview:self.noRespon];
-    [self.view hidePopupLoading];
-}
+#pragma mark - Lazy load
 
 - (UIProgressView *)progressView {
     if (!_progressView) {
@@ -186,6 +204,7 @@
         _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64)];
         _wkWebView.UIDelegate = self;
         _wkWebView.navigationDelegate = self;
+        _wkWebView.scrollView.bounces = self;
         [_wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
         [self.view addSubview:_wkWebView];
     }
@@ -196,6 +215,7 @@
     if (!_webView) {
         _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64)];
         _webView.delegate = self;
+        _webView.scrollView.bounces = self;
         [self.view addSubview:_webView];
     }
     return _webView;
