@@ -14,25 +14,39 @@
     NSString *type;
     if (kUserInfo.status == kUserStateMum) {
         type = @"产检";
+        self.introText.text = @"距下次产检";
     } else {
         type = @"儿童保健";
+        self.introText.text = @"距下次儿保";
     }
     self.nextCheckTime.text = [NSString stringWithFormat:@"请于%@前往医院进行%@",[NSDate dateStringWithTimeInterval:kShareManager_Home.homeInfo.nextCheckTime formatterStr:@"M月d日"],type];
     
     GestationalWeeks *week = [NSDate calculationIntervalWeeksWithStart:[NSDate date].timeIntervalSince1970 end:kShareManager_Home.homeInfo.nextCheckTime];
     
     NSInteger surplusDay = labs([week.allDay integerValue]);
+    
+    
+    // 单位
+    AttributeStringAttrs *unitAttrs = [AttributeStringAttrs new];
+    unitAttrs.textColor = [UIColor colorFromHexRGB:@"858585"];
+    unitAttrs.font = SystemFont(27);
     // 显示月
     if (surplusDay > 60 && surplusDay <= 365) {
         surplusDay = surplusDay / 7;
-        self.unit.text = @"月";
+        unitAttrs.text = @"月";
     } else if (surplusDay > 365) {
         surplusDay = 1;
-        self.unit.text = @"年以上";
+        unitAttrs.text = @"年以上";
     } else {
-        self.unit.text = @"天";
+        unitAttrs.text = @"天";
     }
-    self.surplusDay.text = [NSString stringWithFormat:@"%ld",surplusDay];
+    AttributeStringAttrs *numAttrs = [AttributeStringAttrs new];
+    numAttrs.text = [NSString stringWithFormat:@"%ld",surplusDay];
+    numAttrs.font = SystemFont(29);
+    numAttrs.textColor = [UIColor colorFromHexRGB:@"858585"];
+    
+    NSAttributedString *text = [NSString makeAttrString:@[numAttrs,unitAttrs]];
+    self.surplusDay.attributedText = text;
     if (week.allDay.integerValue < 0) {
         self.introText.text = @"您已逾期";
     }

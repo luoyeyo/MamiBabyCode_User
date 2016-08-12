@@ -11,7 +11,6 @@
 @interface UserCheckInfoView : UIView
 // 剩余时间
 @property (strong, nonatomic) IBOutlet UILabel *surplusDay;
-@property (strong, nonatomic) IBOutlet UILabel *unit;
 @property (strong, nonatomic) IBOutlet UILabel *introText;
 @property (strong, nonatomic) IBOutlet UILabel *nextCheckTime;
 @property (strong, nonatomic) IBOutlet UILabel *title;

@@ -940,13 +940,6 @@
                                                                 <color key="textColor" red="0.52156862745098043" green="0.52156862745098043" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRc-k7-BSm">
-                                                                <rect key="frame" x="49" y="0.0" width="1" height="71"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="1" id="6pB-L6-z3C"/>
-                                                                </constraints>
-                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ik9-vL-Mz6">
                                                                 <rect key="frame" x="13" y="40" width="74" height="1"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -960,12 +953,6 @@
                                                                     </constraint>
                                                                 </constraints>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKN-LN-yIM">
-                                                                <rect key="frame" x="50" y="10" width="24" height="29"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                                <color key="textColor" red="0.52156862749999999" green="0.52156862749999999" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="距下次检查" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYs-NR-J9M">
                                                                 <rect key="frame" x="0.0" y="46" width="100" height="14"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
@@ -975,23 +962,18 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstItem="cRc-k7-BSm" firstAttribute="centerX" secondItem="pRA-KU-UnF" secondAttribute="centerX" id="4c6-zu-6iq"/>
+                                                            <constraint firstItem="lBz-Uz-cI9" firstAttribute="centerX" secondItem="zLL-xM-dHd" secondAttribute="centerX" id="7R5-7A-fF1"/>
                                                             <constraint firstItem="zLL-xM-dHd" firstAttribute="leading" secondItem="pRA-KU-UnF" secondAttribute="leading" id="8qW-WO-cBX"/>
                                                             <constraint firstAttribute="trailing" secondItem="Ik9-vL-Mz6" secondAttribute="trailing" constant="13" id="BSo-qH-vsX"/>
                                                             <constraint firstItem="Ik9-vL-Mz6" firstAttribute="top" secondItem="lBz-Uz-cI9" secondAttribute="bottom" constant="-2" id="Dte-lt-XJ8"/>
                                                             <constraint firstAttribute="trailing" secondItem="zLL-xM-dHd" secondAttribute="trailing" id="JlY-zH-yL5"/>
                                                             <constraint firstItem="Ik9-vL-Mz6" firstAttribute="centerY" secondItem="pRA-KU-UnF" secondAttribute="centerY" constant="5" id="N9r-FH-feB"/>
-                                                            <constraint firstItem="cRc-k7-BSm" firstAttribute="top" secondItem="pRA-KU-UnF" secondAttribute="top" id="VB2-Nm-JUa"/>
                                                             <constraint firstItem="OYs-NR-J9M" firstAttribute="top" secondItem="Ik9-vL-Mz6" secondAttribute="bottom" constant="5" id="XuF-07-zOk"/>
                                                             <constraint firstAttribute="trailing" secondItem="OYs-NR-J9M" secondAttribute="trailing" id="Zl1-tG-Ei2"/>
-                                                            <constraint firstItem="vKN-LN-yIM" firstAttribute="bottom" secondItem="lBz-Uz-cI9" secondAttribute="bottom" constant="-3" id="a5Z-Cj-0YZ"/>
                                                             <constraint firstAttribute="width" secondItem="pRA-KU-UnF" secondAttribute="height" multiplier="1:1" id="cFo-tw-dcV"/>
-                                                            <constraint firstAttribute="bottom" secondItem="cRc-k7-BSm" secondAttribute="bottom" id="e8j-hV-uxD"/>
                                                             <constraint firstItem="OYs-NR-J9M" firstAttribute="leading" secondItem="pRA-KU-UnF" secondAttribute="leading" id="lQO-eR-n9p"/>
                                                             <constraint firstAttribute="bottom" secondItem="zLL-xM-dHd" secondAttribute="bottom" id="lpp-6V-HFE"/>
-                                                            <constraint firstItem="vKN-LN-yIM" firstAttribute="leading" secondItem="cRc-k7-BSm" secondAttribute="trailing" id="nNz-HB-fW0"/>
                                                             <constraint firstItem="Ik9-vL-Mz6" firstAttribute="leading" secondItem="pRA-KU-UnF" secondAttribute="leading" constant="13" id="oZz-DZ-d9X"/>
-                                                            <constraint firstItem="cRc-k7-BSm" firstAttribute="leading" secondItem="lBz-Uz-cI9" secondAttribute="trailing" id="se8-oQ-Gcr"/>
                                                             <constraint firstItem="zLL-xM-dHd" firstAttribute="top" secondItem="pRA-KU-UnF" secondAttribute="top" id="w7T-QI-HG4"/>
                                                         </constraints>
                                                         <variation key="default">
@@ -1047,7 +1029,6 @@
                                                     <outlet property="nextCheckTime" destination="IQ1-eY-1fs" id="pMA-aR-EdQ"/>
                                                     <outlet property="surplusDay" destination="lBz-Uz-cI9" id="gTg-ga-ni5"/>
                                                     <outlet property="title" destination="IRq-b8-Vng" id="EhK-z6-Jz2"/>
-                                                    <outlet property="unit" destination="vKN-LN-yIM" id="5VW-9N-htE"/>
                                                 </connections>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page1_userhead" translatesAutoresizingMaskIntoConstraints="NO" id="gYj-0P-BZg">
