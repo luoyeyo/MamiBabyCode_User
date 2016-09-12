@@ -10,8 +10,11 @@
 #import "HospitalItemModel.h"
 #import "RiskListModel.h"
 #import "HospitalListModel.h"
+#import "AssayReportModel.h"
+#import "ImageReportModel.h"
+#import "ReportsModel.h"
 
-@interface Network_ParentingClass : NetworkManager
+@interface Network_Hospital : NetworkManager
 
 /**
  *  获取孕期产检信息
@@ -19,12 +22,6 @@
  *  @param responseBlock 
  */
 - (void)getPregancyDeliveryrWithParams:(Input_params *)params isMum:(BOOL)isMum ResponseBlock:(void (^)(LLError *error,NSArray *list))responseBlock;
-//
-//- (void)getParentingClassResponseBlock:(void (^)(LLError *error))responseBlock;
-//
-//- (void)getParentingClassListWith:(Input_params *)params ResponseBlock:(void (^)(LLError *error,NSArray *arr))responseBlock;
-//
-//+ (NSArray *)makeImageListWith:(NSArray *)responseData;
 
 /**
  *  获取高危列表
@@ -56,5 +53,13 @@
  *  @param responseBlock 
  */
 - (void)getHospitalListInfoWithParams:(Input_params *)params ResponseBlock:(void (^)(LLError *error, NSArray *info))responseBlock;
+
+/**
+ *  获取用户产检报告列表
+ *
+ *  @param params
+ *  @param responseBlock
+ */
+- (void)requestReportListWithParams:(Input_params *)params responseBlock:(void (^)(LLError *error,NSArray *responseData))responseBlock;
 
 @end

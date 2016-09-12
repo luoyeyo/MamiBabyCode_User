@@ -44,12 +44,14 @@
 }
 
 - (void)updateInfo {
+    
     // 计算数据源
     CalendarLogic * Logic = [[CalendarLogic alloc]init];
     NSInteger allDay = 0;
     NSDate *date;
     if (kUserInfo.status == kUserStateMum) {
         allDay = kUserStateMomDays;
+//        UserInfoEntity *user = kUserInfo;
         date = [NSDate dateWithTimeIntervalSince1970:kUserInfo.lastMenses.doubleValue];
         // 设置终止日期
         if (kUserInfo.dueDate > 0) {

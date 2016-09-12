@@ -176,3 +176,25 @@ typedef NS_ENUM(NSInteger,kUserType) {
     kUserTypeVIP = 2,
 };
 
+/**
+ *  报告类型
+ */
+typedef NS_ENUM(NSInteger,ReportType) {
+    /**
+     *  产检报告
+     */
+    kReportTypeAntenatal = 3,
+    /**
+     *  化验报告
+     */
+    kReportTypeAssay = 1,
+    /**
+     *  影像报告
+     */
+    kReportTypeImage = 2,
+    /**
+     *  影像报告
+     */
+    kReportTypeChild = 4,
+};
+

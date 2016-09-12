@@ -40,7 +40,7 @@
 #define kNetWorkRequestTimeOut  (10)
 
 // 本地储存的当前版本信息
-#define locationVersion 100
+#define locationVersion 200
 
 //网络内存缓存
 #define kNetWorkDataMemoryCache (5 * 1024 * 1024)

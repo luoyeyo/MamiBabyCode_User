@@ -55,6 +55,8 @@
 // 生日
 @property (nonatomic, copy) NSString *birthday;
 
+@property (nonatomic, copy) NSNumber *checkType;
+@property (nonatomic, copy) NSNumber *patientId;
 
 #pragma mark - mine
 

@@ -18,21 +18,22 @@
     [super awakeFromNib];
 }
 
-- (void)selectThisBaby {
-    
-    
-}
-
 - (void)setBabyInfo:(BabyInfoModel *)babyInfo {
     _babyInfo = babyInfo;
     self.nameLabel.text = babyInfo.nickname;
     NSString *genderImageName = (babyInfo.gender.integerValue == 1) ? @"page2_icon_man" : @"page2_icon_woman";
     self.genderIcon.image = ImageNamed(genderImageName);
+    if (kUserInfo.status == kUserStateChild && [kUserInfo.currentBaby.Id isEqual:babyInfo.Id]) {
+        self.selectedBtn.selected = YES;
+    }
 }
 
 - (void)isMum {
     self.nameLabel.text = kUserInfo.nickname;
     self.genderIcon.image = ImageNamed(@"page2_icon_mom");
+    if (kUserInfo.status == kUserStateMum) {
+        self.selectedBtn.selected = YES;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

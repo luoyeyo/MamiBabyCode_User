@@ -82,7 +82,7 @@
 - (void)requestData {
     [self.view showPopupLoading];
     
-    [[[Network_ParentingClass alloc] init] getHospitalListInfoWithParams:_params ResponseBlock:^(LLError *error, NSArray *info) {
+    [[[Network_Hospital alloc] init] getHospitalListInfoWithParams:_params ResponseBlock:^(LLError *error, NSArray *info) {
         [self.view hidePopupLoading];
         [_tableView.mj_footer endRefreshing];
         [_tableView.mj_header endRefreshing];

@@ -13,6 +13,7 @@
 #import "MyFavouriteViewController.h"
 #import "MyStateViewController.h"
 #import "SelfViewController.h"
+#import "SelectBabyView.h"
 
 @interface MineViewController ()<UITableViewDelegate,UITableViewDataSource> {
     NSArray *_titleArr;
@@ -96,9 +97,9 @@
         return mineInfocell;
     } else if (indexPath.section == 0) {
         SettingListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SettingListCell"];
-        cell.title.text = @"修改我的状态";
+        cell.title.text = @"切换妈咪/儿童";
         cell.icon.image = ImageNamed(@"page1_icon_revise");
-        cell.pregnancyLabel.text = kUserInfo.status == kUserStateMum ? @"孕期" : @"家有宝贝";
+//        cell.pregnancyLabel.text = kUserInfo.status == kUserStateMum ? @"孕期" : @"家有宝贝";
         [cell addLineTo:kFrameLocationBottom color:kColorLineGray];
         return cell;
     } else if (indexPath.section == 1 && indexPath.row == 0) {
@@ -138,8 +139,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0 && indexPath.row == 1) {
-        MyStateViewController *state = [[MyStateViewController alloc] init];
-        [self pushViewController:state];
+        if (kUserInfo.currentBaby.Id.integerValue == 0) {
+            MyStateViewController *state = [[MyStateViewController alloc] init];
+            [self pushViewController:state];
+        } else {
+            // 有小孩信息就是切换列表
+            [self showChangeBabyView];
+        }
     } else if (indexPath.section == 2) {
         [self performSegueWithIdentifier:@"SettingViewController" sender:nil];
     } else if (indexPath.section == 1 && indexPath.row == 0) {
@@ -163,11 +169,6 @@
         rect.size.height = 0 - offset.y;
         _header.frame = rect;
     }
-//    if (offset.y > 10) {
-//        self.navigationController.navigationBar.hidden = YES;
-//    } else {
-//        self.navigationController.navigationBar.hidden = NO;
-//    }
 }
 
 - (void)editMyInfo:(UIButton *)sender {
@@ -187,6 +188,23 @@
     if (!kUserInfo.isLogined) {
         mineInfocell.name.text = @"游客用户";
     }
+}
+
+- (void)showChangeBabyView {
+    SelectBabyView *view = [SelectBabyView defaultClassNameNibViewWithFrame:kAppDelegate.window.bounds];
+    [view setSelectBabyBlock:^(NSInteger index) {
+        kUserState state;
+        // 妈咪
+        if (index == 0) {
+            state = kUserStateMum;
+        } else {
+            state = kUserStateChild;
+            // 去掉妈妈占的1  所以-1    此时只存在单例  当改变状态请求完成再存本地
+            kUserInfo.currentBaby = kUserInfo.babys[index - 1];
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotiSelectThisBaby object:@(state)];
+    }];
+    [view show];
 }
 
 - (UILabel *)logout {

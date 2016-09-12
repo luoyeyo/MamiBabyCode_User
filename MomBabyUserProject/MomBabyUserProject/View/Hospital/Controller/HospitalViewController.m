@@ -17,7 +17,7 @@
 #import "WKHTMLViewController.h"
 #import "HospitalListController.h"
 #import "ReportCardViewController.h"
-
+#import "ReportListViewController.h"
 
 @interface HospitalViewController ()<UICollectionViewDelegate,UICollectionViewDataSource> {
     ItemGroupModel *_data;
@@ -208,6 +208,11 @@
         report.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:report animated:YES];
         return;
+    } else if ([urlStr ios7IsContainsString:@"action=reports"]) {
+        ReportListViewController *report = [[ReportListViewController alloc] init];
+        report.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:report animated:YES];
+        return;
     }
     
     WKHTMLViewController *html = [[WKHTMLViewController alloc] init];
@@ -241,7 +246,7 @@
 - (void)getHospitalDetailsInfoWith:(NSString *)Id {
     self.baseView.hidden = YES;
     [self.view showPopupLoading];
-    [[[Network_ParentingClass alloc] init] getHospitalDetailsInfoHospitalId:Id ResponseBlock:^(LLError *error, ItemGroupModel *info) {
+    [[[Network_Hospital alloc] init] getHospitalDetailsInfoHospitalId:Id ResponseBlock:^(LLError *error, ItemGroupModel *info) {
         self.baseView.hidden = NO;
         [self.view hidePopupLoading];
         if (!error) {
@@ -334,7 +339,7 @@
 
     [self.workCollection reloadData];
     
-    [[[Network_ParentingClass alloc] init] gethospitalsImagesWithHospitalsId:details.hospitalId ResponseBlock:^(LLError *error, NSArray *responseData) {
+    [[[Network_Hospital alloc] init] gethospitalsImagesWithHospitalsId:details.hospitalId ResponseBlock:^(LLError *error, NSArray *responseData) {
         if (!error) {
             NSMutableArray *arr = [NSMutableArray array];
             for (PhotoModel *model in responseData) {

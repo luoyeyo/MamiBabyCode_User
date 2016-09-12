@@ -6,10 +6,10 @@
 //  Copyright © 2016年 luo. All rights reserved.
 //
 
-#import "Network_ParentingClass.h"
+#import "Network_Hospital.h"
 
 
-@implementation Network_ParentingClass
+@implementation Network_Hospital
 
 - (void)getPregancyDeliveryrWithParams:(Input_params *)params isMum:(BOOL)isMum ResponseBlock:(void (^)(LLError *error,NSArray *list))responseBlock {
     NSDictionary *dic = [NSDictionary dictionaryFromPropertyObject:params];
@@ -72,6 +72,26 @@
         if (!error) {
             HospitalListModel *data = [[HospitalListModel alloc] initWithDictionary:responseData error:nil];
             responseBlock(nil,data.list);
+        } else {
+            responseBlock(error,nil);
+        }
+    }];
+}
+
+- (void)requestReportListWithParams:(Input_params *)params responseBlock:(void (^)(LLError *,NSArray *))responseBlock {
+    NSDictionary *dic = [NSDictionary dictionaryFromPropertyObject:params];
+    [self get:kApiReports params:dic additionalHeader:nil response:^(LLError *error, id responseData) {
+        if (!error) {
+            if (params.checkType.integerValue == kReportTypeImage) {
+                ImageReportListModel *model = [[ImageReportListModel alloc] initWithDictionary:responseData error:nil];
+                responseBlock(nil,model.list);
+            } else if (params.checkType.integerValue == kReportTypeAssay) {
+                AssayReportListModel *model = [[AssayReportListModel alloc] initWithDictionary:responseData error:nil];
+                responseBlock(nil,model.list);
+            } else {
+                ReportsListModel *model = [[ReportsListModel alloc] initWithDictionary:responseData error:nil];
+                responseBlock(nil,model.list);
+            }
         } else {
             responseBlock(error,nil);
         }

@@ -55,6 +55,17 @@
     
 }
 
-#pragma mark - 导航栏
+- (void)noMoreData {
+    [self.tableView addSubview:self.noResponeView];
+    self.noResponeView.type = kNoResponseTypeNoData;
+}
+
+- (NoResponseView *)noResponeView {
+    if (_noResponeView == nil) {
+        _noResponeView = [[NoResponseView alloc] initWithFrame:self.view.bounds];
+        _noResponeView.type = kNoResponseTypeNoConnection;
+    }
+    return _noResponeView;
+}
 
 @end

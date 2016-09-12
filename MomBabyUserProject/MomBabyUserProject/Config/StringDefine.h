@@ -30,7 +30,10 @@ static NSString *const kNotiUpdateLikeCountData = @"首页刷新点赞数";
  */
 static NSString *const kObserverBadgeNum = @"kBadgeNum";
 
-
+/**
+ *  医院模块
+ */
+static NSString *const kNotiClickReport = @"点击产检报告";
 
 #define kErrorMessage @"数据加载失败"
 #define kNoDataMessage @"您现在还没有待处理的孕妇"

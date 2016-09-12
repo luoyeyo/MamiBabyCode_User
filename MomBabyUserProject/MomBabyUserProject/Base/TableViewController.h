@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NoResponseView.h"
 
 @interface TableViewController : UITableViewController
 
+@property (nonatomic, strong) NoResponseView *noResponeView;
+- (void)noMoreData;
 @end

@@ -79,7 +79,7 @@
     
 }
 
-- (void)createNavBar{
+- (void)createNavBar {
     
     self.navigationBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
     self.navigationBarView.backgroundColor = kColorTheme;

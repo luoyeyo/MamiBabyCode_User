@@ -150,9 +150,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="emT-Z5-fKD" id="VfM-gs-pf7"/>
-                        <segue destination="xzW-RU-MYN" kind="show" identifier="SettingViewController" id="qiz-rT-tds"/>
-                        <segue destination="7lO-D5-OuG" kind="show" identifier="ModifyMyInfoController" id="T85-cT-rs5"/>
-                        <segue destination="puD-7F-quN" kind="show" identifier="MyCollectionViewController" id="fFg-mW-0aS"/>
+                        <segue destination="xzW-RU-MYN" kind="push" identifier="SettingViewController" id="qiz-rT-tds"/>
+                        <segue destination="7lO-D5-OuG" kind="push" identifier="ModifyMyInfoController" id="T85-cT-rs5"/>
+                        <segue destination="puD-7F-quN" kind="push" identifier="MyCollectionViewController" id="fFg-mW-0aS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XNd-xq-srC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -194,11 +194,12 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="WuF-9j-Jwb"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <segue destination="xp5-cu-8h2" kind="show" identifier="FeedbackController" id="o5u-TP-CIA"/>
-                        <segue destination="sUR-Qj-mSB" kind="show" identifier="AboutViewController" id="foN-Ej-xta"/>
-                        <segue destination="Quo-oB-8jL" kind="show" identifier="ChangePhoneController" id="Dud-62-UKh"/>
+                        <segue destination="xp5-cu-8h2" kind="push" identifier="FeedbackController" id="o5u-TP-CIA"/>
+                        <segue destination="sUR-Qj-mSB" kind="push" identifier="AboutViewController" id="foN-Ej-xta"/>
+                        <segue destination="Quo-oB-8jL" kind="push" identifier="ChangePhoneController" id="Dud-62-UKh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9x5-sY-uTD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -233,6 +234,7 @@
                             <constraint firstItem="SkS-PO-izq" firstAttribute="top" secondItem="92N-IS-YYN" secondAttribute="bottom" id="avj-h4-hNO"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="y4D-PJ-LpM"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="92N-IS-YYN" id="uaM-hv-mzA"/>
@@ -351,6 +353,7 @@
                             <constraint firstItem="ZTw-0z-IG9" firstAttribute="top" secondItem="D10-n2-4sb" secondAttribute="bottom" id="uG0-FV-sGv"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="St4-Dc-rfK"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="D10-n2-4sb" id="LB5-IX-3LC"/>
@@ -430,6 +433,7 @@
                             <constraint firstItem="hhr-Uf-vmg" firstAttribute="centerX" secondItem="EdK-EF-J0g" secondAttribute="centerX" id="lUH-4S-KkT"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="YnX-i1-xWl"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="textFiled" destination="JrQ-sS-ygF" id="LuX-42-Xpz"/>
@@ -542,6 +546,7 @@
                             <constraint firstAttribute="trailing" secondItem="cWR-Ty-2Zc" secondAttribute="trailing" id="ygL-aO-rAn"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="vgs-lt-OWd"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="cWR-Ty-2Zc" id="bvz-Yz-Z2K"/>
@@ -679,6 +684,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="srE-cr-Xdn"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="versionLabel" destination="fYd-30-4f1" id="UuL-SJ-Giw"/>
@@ -1351,7 +1357,7 @@
                         <outlet property="timeLine" destination="zog-9s-cXh" id="Jeo-eY-hGw"/>
                         <outlet property="todayBtn" destination="FjU-dU-KUy" id="ojd-6g-r9h"/>
                         <outlet property="userInfoView" destination="GJf-aS-MOv" id="pEc-FG-gDd"/>
-                        <segue destination="p2s-rP-RAJ" kind="show" identifier="GuideInfoViewController" id="1l1-7p-DM2"/>
+                        <segue destination="p2s-rP-RAJ" kind="push" identifier="GuideInfoViewController" id="1l1-7p-DM2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWi-9j-8rf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1745,7 +1751,7 @@
                         <outlet property="v_lineWidth" destination="BFQ-yh-yYd" id="Ly9-De-xgW"/>
                         <outlet property="vipLevelLabel" destination="i8U-dT-SnY" id="aLh-5G-zhR"/>
                         <outlet property="workCollection" destination="qNH-yN-c5N" id="yrk-ah-IHj"/>
-                        <segue destination="ou2-aP-Qtt" kind="show" identifier="HospitalListController" id="Ts3-CR-Sqv"/>
+                        <segue destination="ou2-aP-Qtt" kind="push" identifier="HospitalListController" id="Ts3-CR-Sqv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ya5-L5-6ZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1809,6 +1815,7 @@
                             <constraint firstAttribute="trailing" secondItem="Kwo-hO-A3f" secondAttribute="trailing" id="hcD-a8-3NR"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="iv8-7b-NDv"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="baseScrollView" destination="Kwo-hO-A3f" id="ECa-dM-zEV"/>
@@ -1980,6 +1987,7 @@
                             <constraint firstAttribute="trailing" secondItem="Rpv-Sc-K80" secondAttribute="trailing" id="rGS-GV-kNu"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Fct-g5-YFR"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="Rpv-Sc-K80" id="iIX-6h-fa2"/>

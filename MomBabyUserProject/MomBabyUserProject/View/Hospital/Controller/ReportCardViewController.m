@@ -43,7 +43,7 @@
     params.limit = @10;
     params.hospitalId = self.hospitalId;
     [self.view showPopupLoading];
-    [[[Network_ParentingClass alloc] init] getPregancyDeliveryrWithParams:params isMum:isMum ResponseBlock:^(LLError *error, NSArray *list) {
+    [[[Network_Hospital alloc] init] getPregancyDeliveryrWithParams:params isMum:isMum ResponseBlock:^(LLError *error, NSArray *list) {
         [self.view hidePopupLoading];
         if (!error) {
             [_list addObjectsFromArray:list];

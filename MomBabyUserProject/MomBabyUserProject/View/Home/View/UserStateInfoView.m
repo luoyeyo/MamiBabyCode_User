@@ -9,12 +9,14 @@
 #import "UserStateInfoView.h"
 
 @interface UserStateInfoView ()
+
 @property (nonatomic, strong) IBOutlet UILabel *topOne;
 @property (nonatomic, strong) IBOutlet UILabel *bottomOne;
 @property (nonatomic, strong) IBOutlet UILabel *topTow;
 @property (nonatomic, strong) IBOutlet UILabel *bottomTow;
 @property (nonatomic, strong) IBOutlet UILabel *topThree;
 @property (nonatomic, strong) IBOutlet UILabel *bottomThree;
+
 @end
 
 @implementation UserStateInfoView
@@ -68,9 +70,9 @@
 }
 
 - (void)setBabyUI {
-    self.topOne.text = @"身高";
-    self.topTow.text = @"已出生";
-    self.topThree.text = @"体重";
+    self.topOne.text = @"标准身高";
+    self.topTow.text = @"已经出生";
+    self.topThree.text = @"标准体重";
     if (kUserInfo.currentBaby.birth.integerValue == 0) {
         self.bottomOne.text = @"-";
         self.bottomTow.text = @"-";
@@ -82,9 +84,11 @@
     if (self.currentDate > 0) {
         current = self.currentDate;
     }
+    // 出生天数
     GestationalWeeks *day = [NSDate calculationIntervalWeeksWithStart:kUserInfo.currentBaby.birth.doubleValue end:[NSDate date].timeIntervalSince1970];
-    self.bottomTow.text = [NSString stringWithFormat:@"%@天",day.allDay];
-    
+//    self.bottomTow.text = [NSString stringWithFormat:@"%@天",day.allDay];
+    AgeEntity *age = [NSDate getAgeWithBirthday:kUserInfo.currentBaby.birth.doubleValue];
+    self.bottomTow.text = age.ageString;
     NSArray *array;
     
     if (kUserInfo.currentBaby.gender.integerValue == 1) {
@@ -95,9 +99,10 @@
     NSString * babyHeight = @"-cm";
     NSString * babyKg = @"-kg";
     NSInteger month = day.allDay.integerValue / 30;
-    HeightAndWeightRange *model = array[month];
+    
     // 36周以内的数据
     if (month <= 36) {
+        HeightAndWeightRange *model = array[month];
         babyHeight = [NSString stringWithFormat:@"%@ - %@cm",model.heightLow,model.heightHigh];
         babyKg = [NSString stringWithFormat:@"%@ - %@kg",model.weightLow,model.weightHigh];
     } else {

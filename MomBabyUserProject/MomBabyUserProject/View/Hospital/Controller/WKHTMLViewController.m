@@ -27,7 +27,6 @@
     [_wkWebView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -44,6 +43,7 @@
         [self addHeader:request];
         
         if (SystemVersion >= 8.0) {
+            [self.view showPopupLoading];
             [self.wkWebView loadRequest:request];
         } else {
             [self.webView loadRequest:request];
@@ -52,6 +52,19 @@
     }
     //    [_web loadHTMLString:nil baseURL:nil];
     //    [_web loadData:nil MIMEType:nil characterEncodingName:nil baseURL:nil];
+}
+
+- (void)clickOtherBtn {
+    [self pushHtmlWithUrl:self.webItem.labelItemUrl];
+}
+
+- (void)addHeader:(NSMutableURLRequest *)request {
+    
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];//这个很关键，一定要设置
+    [request setValue:kUserInfo.token forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"ios" forHTTPHeaderField:@"Platform"];
+    [request setValue:[UIDevice currentDevice].systemVersion forHTTPHeaderField:@"Os-Version"];
+    [request setValue:[NSString stringWithFormat:@"%d",locationVersion] forHTTPHeaderField:@"VersionNum"];
 }
 
 #pragma mark - WKNavigationDelegate
@@ -84,6 +97,41 @@
         return;
     }
     [self.view addSubview:self.noRespon];
+}
+
+- (void)pushHtmlWithUrl:(NSString *)urlStr {
+    WKHTMLViewController *web = [[WKHTMLViewController alloc] init];
+    // 替换医院id
+    NSString *url = [urlStr stringByReplacingOccurrencesOfString:@"{{hospitalId}}" withString:[NSString stringWithFormat:@"%ld",(long)self.info.hospitalId]];
+    // 替换医生Id
+    NSString *newUrl = [url stringByReplacingOccurrencesOfString:@"{{doctorId}}" withString:[NSString stringWithFormat:@"%ld",(long)self.info.doctorId]];
+    // 因为item的Url可能带参数 需要再次解析
+    WebItem *item = [WebItem createWebItemWithUrl:newUrl];
+    web.webItem = item;
+    [self.navigationController pushViewController:web animated:YES];
+}
+
+// 计算wkWebView进度条
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == _wkWebView && [keyPath isEqualToString:@"estimatedProgress"]) {
+        CGFloat newprogress = [[change objectForKey:NSKeyValueChangeNewKey] doubleValue];
+        if (newprogress == 1) {
+            [self.view hidePopupLoading];
+        }
+    }
+}
+/**
+ *  再次加载
+ */
+- (void)onceAgain {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.webItem.defaultUrl]];
+    [self addHeader:request];
+    [self.noRespon removeFromSuperview];
+    if (SystemVersion >= 8.0) {
+        [self.wkWebView loadRequest:request];
+    } else {
+        [self.webView loadRequest:request];
+    }
 }
 
 #pragma mark - UIWebViewDelegate
@@ -123,65 +171,6 @@
     [self.view hidePopupLoading];
 }
 
-#pragma mark - Privave Method
-/**
- *  点击右上角其他按钮
- */
-- (void)clickOtherBtn {
-    [self pushHtmlWithUrl:self.webItem.labelItemUrl];
-}
-
-/**
- *  为request添加header
- *
- *  @param request
- */
-- (void)addHeader:(NSMutableURLRequest *)request {
-    
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];//这个很关键，一定要设置
-    [request setValue:kUserInfo.token forHTTPHeaderField:@"Authorization"];
-    [request setValue:@"ios" forHTTPHeaderField:@"Platform"];
-    [request setValue:[UIDevice currentDevice].systemVersion forHTTPHeaderField:@"Os-Version"];
-    [request setValue:[NSString stringWithFormat:@"%d",locationVersion] forHTTPHeaderField:@"VersionNum"];
-}
-
-- (void)pushHtmlWithUrl:(NSString *)urlStr {
-    WKHTMLViewController *web = [[WKHTMLViewController alloc] init];
-    // 替换医院id
-    NSString *url = [urlStr stringByReplacingOccurrencesOfString:@"{{hospitalId}}" withString:[NSString stringWithFormat:@"%ld",(long)self.info.hospitalId]];
-    // 替换医生Id
-    NSString *newUrl = [url stringByReplacingOccurrencesOfString:@"{{doctorId}}" withString:[NSString stringWithFormat:@"%ld",(long)self.info.doctorId]];
-    // 因为item的Url可能带参数 需要再次解析
-    WebItem *item = [WebItem createWebItemWithUrl:newUrl];
-    web.webItem = item;
-    [self.navigationController pushViewController:web animated:YES];
-}
-
-// 计算wkWebView进度条
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (object == _wkWebView && [keyPath isEqualToString:@"estimatedProgress"]) {
-        CGFloat newprogress = [[change objectForKey:NSKeyValueChangeNewKey] doubleValue];
-        if (newprogress == 1) {
-            [_wkWebView hidePopupLoading];
-        }
-    }
-}
-/**
- *  再次加载
- */
-- (void)onceAgain {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.webItem.defaultUrl]];
-    [self addHeader:request];
-    [self.noRespon removeFromSuperview];
-    if (SystemVersion >= 8.0) {
-        [self.wkWebView loadRequest:request];
-    } else {
-        [self.webView loadRequest:request];
-    }
-}
-
-#pragma mark - Lazy load
-
 - (UIProgressView *)progressView {
     if (!_progressView) {
         _progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 20)];
@@ -201,10 +190,9 @@
 
 - (WKWebView *)wkWebView {
     if (!_wkWebView) {
-        _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64)];
+        _wkWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth + 1, ScreenHeight - 64)];
         _wkWebView.UIDelegate = self;
         _wkWebView.navigationDelegate = self;
-        _wkWebView.scrollView.bounces = self;
         [_wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
         [self.view addSubview:_wkWebView];
     }
@@ -215,7 +203,6 @@
     if (!_webView) {
         _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64)];
         _webView.delegate = self;
-        _webView.scrollView.bounces = self;
         [self.view addSubview:_webView];
     }
     return _webView;

@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SelectBabyView : UIView
+
 @property (strong, nonatomic) UITableView *tableView;
 @property (copy, nonatomic) void(^selectBabyBlock)(NSInteger index);
 - (void)show;
+
 @end

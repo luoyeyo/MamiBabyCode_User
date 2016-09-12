@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		35C07964AC77ADB819A7EBF1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62315CB8FBE9F148F9896A03 /* libPods.a */; };
 		41E02F421D2F94ED00D7490A /* UserInfoChangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E02F411D2F94ED00D7490A /* UserInfoChangeModel.m */; };
+		41F1BC851D824E1C003AC1AE /* ReportListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F1BC6E1D824E1C003AC1AE /* ReportListViewController.m */; };
+		41F1BC861D824E1C003AC1AE /* AssayReportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F1BC711D824E1C003AC1AE /* AssayReportModel.m */; };
+		41F1BC871D824E1C003AC1AE /* ImageReportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F1BC731D824E1C003AC1AE /* ImageReportModel.m */; };
+		41F1BC881D824E1C003AC1AE /* ReportsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F1BC751D824E1C003AC1AE /* ReportsModel.m */; };
+		41F1BC891D824E1C003AC1AE /* AssayReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F1BC781D824E1C003AC1AE /* AssayReportCell.m */; };
+		41F1BC8A1D824E1C003AC1AE /* AssayReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F1BC791D824E1C003AC1AE /* AssayReportCell.xib */; };
+		41F1BC8B1D824E1C003AC1AE /* ImageReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F1BC7B1D824E1C003AC1AE /* ImageReportCell.m */; };
+		41F1BC8C1D824E1C003AC1AE /* ImageReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F1BC7C1D824E1C003AC1AE /* ImageReportCell.xib */; };
+		41F1BC8D1D824E1C003AC1AE /* ReportListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F1BC7E1D824E1C003AC1AE /* ReportListCell.m */; };
+		41F1BC8E1D824E1C003AC1AE /* ReportListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F1BC7F1D824E1C003AC1AE /* ReportListCell.xib */; };
+		41F1BC8F1D824E1C003AC1AE /* ReportSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F1BC811D824E1C003AC1AE /* ReportSecondCell.m */; };
+		41F1BC901D824E1C003AC1AE /* ReportSecondCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F1BC821D824E1C003AC1AE /* ReportSecondCell.xib */; };
+		41F1BC911D824E1C003AC1AE /* ReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F1BC841D824E1C003AC1AE /* ReportView.m */; };
+		41F1BC951D82510C003AC1AE /* CustomMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F1BC941D82510C003AC1AE /* CustomMenuView.m */; };
 		B152496B1D2C97D60019545E /* UserCheckInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B152496A1D2C97D60019545E /* UserCheckInfoView.m */; };
 		B1F1011C1D22090C00A1004D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F1011B1D22090C00A1004D /* main.m */; };
 		B1F101251D22090C00A1004D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F101231D22090C00A1004D /* Main.storyboard */; };
@@ -184,7 +198,7 @@
 		B1F103EA1D220DC900A1004D /* MoreHospitalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102CD1D220DC900A1004D /* MoreHospitalModel.m */; };
 		B1F103EB1D220DC900A1004D /* RiskListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102CF1D220DC900A1004D /* RiskListModel.m */; };
 		B1F103EC1D220DC900A1004D /* WebItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102D11D220DC900A1004D /* WebItem.m */; };
-		B1F103ED1D220DC900A1004D /* Network_ParentingClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102D41D220DC900A1004D /* Network_ParentingClass.m */; };
+		B1F103ED1D220DC900A1004D /* Network_Hospital.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102D41D220DC900A1004D /* Network_Hospital.m */; };
 		B1F103EE1D220DC900A1004D /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102D71D220DC900A1004D /* CardView.m */; };
 		B1F103EF1D220DC900A1004D /* CustomLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102D91D220DC900A1004D /* CustomLayout.m */; };
 		B1F103F01D220DC900A1004D /* CWStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F102DB1D220DC900A1004D /* CWStarRateView.m */; };
@@ -270,6 +284,30 @@
 /* Begin PBXFileReference section */
 		41E02F401D2F94ED00D7490A /* UserInfoChangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoChangeModel.h; sourceTree = "<group>"; };
 		41E02F411D2F94ED00D7490A /* UserInfoChangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoChangeModel.m; sourceTree = "<group>"; };
+		41F1BC6D1D824E1C003AC1AE /* ReportListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportListViewController.h; sourceTree = "<group>"; };
+		41F1BC6E1D824E1C003AC1AE /* ReportListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportListViewController.m; sourceTree = "<group>"; };
+		41F1BC701D824E1C003AC1AE /* AssayReportModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssayReportModel.h; sourceTree = "<group>"; };
+		41F1BC711D824E1C003AC1AE /* AssayReportModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssayReportModel.m; sourceTree = "<group>"; };
+		41F1BC721D824E1C003AC1AE /* ImageReportModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageReportModel.h; sourceTree = "<group>"; };
+		41F1BC731D824E1C003AC1AE /* ImageReportModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageReportModel.m; sourceTree = "<group>"; };
+		41F1BC741D824E1C003AC1AE /* ReportsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportsModel.h; sourceTree = "<group>"; };
+		41F1BC751D824E1C003AC1AE /* ReportsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportsModel.m; sourceTree = "<group>"; };
+		41F1BC771D824E1C003AC1AE /* AssayReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssayReportCell.h; sourceTree = "<group>"; };
+		41F1BC781D824E1C003AC1AE /* AssayReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssayReportCell.m; sourceTree = "<group>"; };
+		41F1BC791D824E1C003AC1AE /* AssayReportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssayReportCell.xib; sourceTree = "<group>"; };
+		41F1BC7A1D824E1C003AC1AE /* ImageReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageReportCell.h; sourceTree = "<group>"; };
+		41F1BC7B1D824E1C003AC1AE /* ImageReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageReportCell.m; sourceTree = "<group>"; };
+		41F1BC7C1D824E1C003AC1AE /* ImageReportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageReportCell.xib; sourceTree = "<group>"; };
+		41F1BC7D1D824E1C003AC1AE /* ReportListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportListCell.h; sourceTree = "<group>"; };
+		41F1BC7E1D824E1C003AC1AE /* ReportListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportListCell.m; sourceTree = "<group>"; };
+		41F1BC7F1D824E1C003AC1AE /* ReportListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportListCell.xib; sourceTree = "<group>"; };
+		41F1BC801D824E1C003AC1AE /* ReportSecondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportSecondCell.h; sourceTree = "<group>"; };
+		41F1BC811D824E1C003AC1AE /* ReportSecondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportSecondCell.m; sourceTree = "<group>"; };
+		41F1BC821D824E1C003AC1AE /* ReportSecondCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportSecondCell.xib; sourceTree = "<group>"; };
+		41F1BC831D824E1C003AC1AE /* ReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportView.h; sourceTree = "<group>"; };
+		41F1BC841D824E1C003AC1AE /* ReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportView.m; sourceTree = "<group>"; };
+		41F1BC931D82510C003AC1AE /* CustomMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMenuView.h; sourceTree = "<group>"; };
+		41F1BC941D82510C003AC1AE /* CustomMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomMenuView.m; sourceTree = "<group>"; };
 		62315CB8FBE9F148F9896A03 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		773254561196709EECC94940 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B15249691D2C97D60019545E /* UserCheckInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCheckInfoView.h; sourceTree = "<group>"; };
@@ -616,8 +654,8 @@
 		B1F102CF1D220DC900A1004D /* RiskListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiskListModel.m; sourceTree = "<group>"; };
 		B1F102D01D220DC900A1004D /* WebItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebItem.h; sourceTree = "<group>"; };
 		B1F102D11D220DC900A1004D /* WebItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebItem.m; sourceTree = "<group>"; };
-		B1F102D31D220DC900A1004D /* Network_ParentingClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network_ParentingClass.h; sourceTree = "<group>"; };
-		B1F102D41D220DC900A1004D /* Network_ParentingClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Network_ParentingClass.m; sourceTree = "<group>"; };
+		B1F102D31D220DC900A1004D /* Network_Hospital.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network_Hospital.h; sourceTree = "<group>"; };
+		B1F102D41D220DC900A1004D /* Network_Hospital.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Network_Hospital.m; sourceTree = "<group>"; };
 		B1F102D61D220DC900A1004D /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
 		B1F102D71D220DC900A1004D /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
 		B1F102D81D220DC900A1004D /* CustomLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLayout.h; sourceTree = "<group>"; };
@@ -782,6 +820,68 @@
 				773254561196709EECC94940 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		41F1BC6B1D824E1C003AC1AE /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				41F1BC6C1D824E1C003AC1AE /* Controller */,
+				41F1BC6F1D824E1C003AC1AE /* Model */,
+				41F1BC761D824E1C003AC1AE /* View */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
+		41F1BC6C1D824E1C003AC1AE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				41F1BC6D1D824E1C003AC1AE /* ReportListViewController.h */,
+				41F1BC6E1D824E1C003AC1AE /* ReportListViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		41F1BC6F1D824E1C003AC1AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				41F1BC701D824E1C003AC1AE /* AssayReportModel.h */,
+				41F1BC711D824E1C003AC1AE /* AssayReportModel.m */,
+				41F1BC721D824E1C003AC1AE /* ImageReportModel.h */,
+				41F1BC731D824E1C003AC1AE /* ImageReportModel.m */,
+				41F1BC741D824E1C003AC1AE /* ReportsModel.h */,
+				41F1BC751D824E1C003AC1AE /* ReportsModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		41F1BC761D824E1C003AC1AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				41F1BC771D824E1C003AC1AE /* AssayReportCell.h */,
+				41F1BC781D824E1C003AC1AE /* AssayReportCell.m */,
+				41F1BC791D824E1C003AC1AE /* AssayReportCell.xib */,
+				41F1BC7A1D824E1C003AC1AE /* ImageReportCell.h */,
+				41F1BC7B1D824E1C003AC1AE /* ImageReportCell.m */,
+				41F1BC7C1D824E1C003AC1AE /* ImageReportCell.xib */,
+				41F1BC7D1D824E1C003AC1AE /* ReportListCell.h */,
+				41F1BC7E1D824E1C003AC1AE /* ReportListCell.m */,
+				41F1BC7F1D824E1C003AC1AE /* ReportListCell.xib */,
+				41F1BC801D824E1C003AC1AE /* ReportSecondCell.h */,
+				41F1BC811D824E1C003AC1AE /* ReportSecondCell.m */,
+				41F1BC821D824E1C003AC1AE /* ReportSecondCell.xib */,
+				41F1BC831D824E1C003AC1AE /* ReportView.h */,
+				41F1BC841D824E1C003AC1AE /* ReportView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		41F1BC921D82510C003AC1AE /* menuView */ = {
+			isa = PBXGroup;
+			children = (
+				41F1BC931D82510C003AC1AE /* CustomMenuView.h */,
+				41F1BC941D82510C003AC1AE /* CustomMenuView.m */,
+			);
+			path = menuView;
 			sourceTree = "<group>";
 		};
 		50B2826E024C9550F25CE650 /* Frameworks */ = {
@@ -1332,6 +1432,7 @@
 		B1F102341D220DC800A1004D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				41F1BC921D82510C003AC1AE /* menuView */,
 				B1F102351D220DC800A1004D /* GetVerifyButton.h */,
 				B1F102361D220DC800A1004D /* GetVerifyButton.m */,
 				B1F102371D220DC800A1004D /* InputLimitField.h */,
@@ -1614,6 +1715,7 @@
 		B1F102BE1D220DC900A1004D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				41F1BC6B1D824E1C003AC1AE /* Reports */,
 				B1F102BF1D220DC900A1004D /* HospitalListController.h */,
 				B1F102C01D220DC900A1004D /* HospitalListController.m */,
 				B1F102C11D220DC900A1004D /* HospitalViewController.h */,
@@ -1646,8 +1748,8 @@
 		B1F102D21D220DC900A1004D /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				B1F102D31D220DC900A1004D /* Network_ParentingClass.h */,
-				B1F102D41D220DC900A1004D /* Network_ParentingClass.m */,
+				B1F102D31D220DC900A1004D /* Network_Hospital.h */,
+				B1F102D41D220DC900A1004D /* Network_Hospital.m */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -1986,7 +2088,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41F1BC8C1D824E1C003AC1AE /* ImageReportCell.xib in Resources */,
 				B1F103F51D220DC900A1004D /* HP_BWorkItemCell.xib in Resources */,
+				41F1BC901D824E1C003AC1AE /* ReportSecondCell.xib in Resources */,
 				B1F103D91D220DC900A1004D /* RecommendReadCell.xib in Resources */,
 				B1F103781D220DC900A1004D /* UMSocialLocalizable.strings in Resources */,
 				B1F1036E1D220DC900A1004D /* IQKeyboardManager.bundle in Resources */,
@@ -2002,7 +2106,9 @@
 				B1F103891D220DC900A1004D /* ReleaseNotes.txt in Resources */,
 				B1F1034E1D220DC900A1004D /* BoyWeightAndHeight.plist in Resources */,
 				B1F1037F1D220DC900A1004D /* UMSLoginViewController.xib in Resources */,
+				41F1BC8E1D824E1C003AC1AE /* ReportListCell.xib in Resources */,
 				B1F103D21D220DC900A1004D /* GuideBottomBar.xib in Resources */,
+				41F1BC8A1D824E1C003AC1AE /* AssayReportCell.xib in Resources */,
 				B1F103D61D220DC900A1004D /* OneGuideInfoCell.xib in Resources */,
 				B1F103CF1D220DC900A1004D /* ArticleLikeNumView.xib in Resources */,
 				B1F1041F1D220DC900A1004D /* MessageTitleCell.xib in Resources */,
@@ -2112,6 +2218,7 @@
 				B1F1040B1D220DC900A1004D /* MyStateViewController.m in Sources */,
 				B1F103E21D220DC900A1004D /* UserStateInfoView.m in Sources */,
 				B1F103C81D220DC900A1004D /* SuperTableView.m in Sources */,
+				41F1BC891D824E1C003AC1AE /* AssayReportCell.m in Sources */,
 				B1F103C01D220DC900A1004D /* RecoverTableViewCell.m in Sources */,
 				B1F104091D220DC900A1004D /* ModifyMyInfoController.m in Sources */,
 				B1F103FA1D220DC900A1004D /* inspectionReportView.m in Sources */,
@@ -2168,11 +2275,13 @@
 				B1F103B01D220DC900A1004D /* NutritionViewController.m in Sources */,
 				B1F103991D220DC900A1004D /* UIView+HUDExtensions.m in Sources */,
 				B1F1038D1D220DC900A1004D /* NSDate+Util.m in Sources */,
+				41F1BC861D824E1C003AC1AE /* AssayReportModel.m in Sources */,
 				B1F104121D220DC900A1004D /* MineInfoCell.m in Sources */,
 				B1F104081D220DC900A1004D /* MineViewController.m in Sources */,
 				B1F103B61D220DC900A1004D /* DiscoverListModel.m in Sources */,
 				B1F103F81D220DC900A1004D /* HP_VWorkItemCell.m in Sources */,
 				B1F103BC1D220DC900A1004D /* DiscoverCell.m in Sources */,
+				41F1BC881D824E1C003AC1AE /* ReportsModel.m in Sources */,
 				B1F1041B1D220DC900A1004D /* SystemMessageFrame.m in Sources */,
 				B1F103E51D220DC900A1004D /* HospitalViewController.m in Sources */,
 				B1F1039F1D220DC900A1004D /* RIButtonItem.m in Sources */,
@@ -2188,6 +2297,7 @@
 				B1F103661D220DC900A1004D /* IQKeyboardManager.m in Sources */,
 				B1F103961D220DC900A1004D /* UITableView+Refresh.m in Sources */,
 				B1F103B41D220DC900A1004D /* ArticleDetailsModel.m in Sources */,
+				41F1BC911D824E1C003AC1AE /* ReportView.m in Sources */,
 				B1F1039A1D220DC900A1004D /* UIView+Util.m in Sources */,
 				B1F103D41D220DC900A1004D /* HMLineLayout.m in Sources */,
 				B1F103691D220DC900A1004D /* IQTextView.m in Sources */,
@@ -2227,6 +2337,7 @@
 				B1F103FB1D220DC900A1004D /* ChooseStateViewController.m in Sources */,
 				B1F1034A1D220DC900A1004D /* HTMLViewController.m in Sources */,
 				B1F103C71D220DC900A1004D /* MessageCell.m in Sources */,
+				41F1BC8F1D824E1C003AC1AE /* ReportSecondCell.m in Sources */,
 				B1F1034B1D220DC900A1004D /* MainViewController.m in Sources */,
 				B1F103491D220DC900A1004D /* HomeTabbarController.m in Sources */,
 				B1F103771D220DC900A1004D /* UIView+SDExtension.m in Sources */,
@@ -2235,13 +2346,16 @@
 				B1F103B21D220DC900A1004D /* WikiSubViewController.m in Sources */,
 				B1F103AF1D220DC900A1004D /* NutritionResultViewController.m in Sources */,
 				B1F104201D220DC900A1004D /* SystemMessageCell.m in Sources */,
+				41F1BC871D824E1C003AC1AE /* ImageReportModel.m in Sources */,
 				B1F101511D220DBC00A1004D /* AppDelegate.m in Sources */,
 				B1F103531D220DC900A1004D /* Input_params.m in Sources */,
+				41F1BC951D82510C003AC1AE /* CustomMenuView.m in Sources */,
 				B1F103B31D220DC900A1004D /* WikiViewController.m in Sources */,
 				B1F104041D220DC900A1004D /* XMTextField.m in Sources */,
 				B1F104061D220DC900A1004D /* ChangePhoneController.m in Sources */,
 				B1F103FF1D220DC900A1004D /* SetDueDateViewController.m in Sources */,
-				B1F103ED1D220DC900A1004D /* Network_ParentingClass.m in Sources */,
+				B1F103ED1D220DC900A1004D /* Network_Hospital.m in Sources */,
+				41F1BC8D1D824E1C003AC1AE /* ReportListCell.m in Sources */,
 				B1F103D81D220DC900A1004D /* RecommendReadCell.m in Sources */,
 				B1F1039B1D220DC900A1004D /* UIView+XIB.m in Sources */,
 				B1F103E71D220DC900A1004D /* WKHTMLViewController.m in Sources */,
@@ -2272,9 +2386,11 @@
 				B1F103B81D220DC900A1004D /* NutritionModel.m in Sources */,
 				B1F104031D220DC900A1004D /* Network_Login.m in Sources */,
 				B1F103461D220DC900A1004D /* AppDelegate+JPush.m in Sources */,
+				41F1BC8B1D824E1C003AC1AE /* ImageReportCell.m in Sources */,
 				B1F103BD1D220DC900A1004D /* MyCollectionViewCell.m in Sources */,
 				B1F103DE1D220DC900A1004D /* TimeLineCell.m in Sources */,
 				B1F103C61D220DC900A1004D /* HomeViewController.m in Sources */,
+				41F1BC851D824E1C003AC1AE /* ReportListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

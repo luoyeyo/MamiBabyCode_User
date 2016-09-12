@@ -114,6 +114,7 @@
 - (void)registerNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setUserInfo) name:kNotiModifyUserInfo object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setUIContent) name:kNotiUpdateLikeCountData object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserStateWithState:) name:kNotiSelectThisBaby object:nil];
 }
 
 /**
@@ -210,6 +211,16 @@
             [self.timeLine updateInfo];
         }
     }];
+}
+
+/**
+ *  使用通知修改
+ *
+ *  @param noti
+ */
+- (void)changeUserStateWithState:(NSNotification *)noti {
+    NSNumber *state = noti.object;
+    [self changeUserStateWith:state.integerValue];
 }
 
 - (IBAction)showSelectBabyView:(UIButton *)sender {

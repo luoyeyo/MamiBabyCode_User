@@ -64,7 +64,8 @@ static NSString *const kGET_hospitalsImages = @"v1/hospitalsImages";
 static NSString *const kGET_HospitalsInfo = @"v1/hospitals";
 // 获取医院列表
 static NSString *const kGET_HospitalsList = @"v1/hospitals/position";
-
+// Groups   获取产检报告
+static NSString *const kApiReports = @"/v1/reports";
 
 
 // ----- 发现
